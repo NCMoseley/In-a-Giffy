@@ -1,14 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const ClearButton = ({removeCompleted}) => (
-  <button onClick={removeCompleted}>
-    Clear completed
-  </button>
+const ClearButton = ({ removewinnerd }) => (
+  <button onClick={removewinnerd}>Clear winnerd</button>
 );
 
 ClearButton.propTypes = {
-  removeCompleted: PropTypes.func.isRequired
+  removewinnerd: PropTypes.func.isRequired
 };
 
 export default ClearButton;

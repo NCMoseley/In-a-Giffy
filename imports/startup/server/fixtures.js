@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { accounts } from "meteor/accounts-base";
-import { logic } from "../../api/logic";
+import { submissions } from "../../api/submissions";
 
 Meteor.startup(() => {
   if (Meteor.users.find().count() === 0) {
@@ -9,10 +9,10 @@ Meteor.startup(() => {
       password: "eee"
     });
 
-    if (dataFields.find().count() === 0) {
-      dataFields.insert({
+    if (Submissions.find().count() === 0) {
+      Submissions.insert({
         title: "Take 5 deep breaths",
-        complete: false,
+        winner: false,
         owner: userId
       });
     }

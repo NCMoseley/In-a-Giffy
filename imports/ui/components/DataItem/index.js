@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const DataItem = ({ item, toggleComplete, removeData }) => (
+const DataItem = ({ item, togglewinner, removeData }) => (
   <div className="single-item">
     <img src={item.title} />
     <input
       type="checkbox"
       id={item._id}
-      checked={item.complete}
-      onChange={toggleComplete}
+      checked={item.winner}
+      onChange={togglewinner}
     />
     <label htmlFor={item._id} />
     <button onClick={removeData}>
@@ -21,9 +21,9 @@ DataItem.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    complete: PropTypes.bool.isRequired
+    winner: PropTypes.bool.isRequired
   }),
-  toggleComplete: PropTypes.func.isRequired,
+  togglewinner: PropTypes.func.isRequired,
   removeData: PropTypes.func.isRequired
 };
 

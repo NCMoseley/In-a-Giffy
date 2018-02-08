@@ -1,11 +1,11 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
 
-export const dataFields = new Mongo.Collection("data");
+export const Submissions = new Mongo.Collection("submissions");
 
 if (Meteor.isServer) {
   Meteor.publish("data", function todosPublication() {
-    return dataFields.find({ owner: this.userId });
+    return Submissions.find({ owner: this.userId });
   });
 }
 
@@ -18,23 +18,23 @@ Meteor.methods({
         "You must be logged in to create a data"
       );
     }
-    dataFields.insert({
+    Submissions.insert({
       title: inputValue,
-      complete: false,
+      winner: false,
       owner: this.userId
     });
   },
 
-  // Toggling complete
-  "data.toggleComplete"(item) {
+  // Toggling winner
+  "data.togglewinner"(item) {
     if (item.owner !== this.userId) {
       throw new Meteor.Error(
-        "data.toggleComplete.not-authorized",
+        "data.togglewinner.not-authorized",
         "You connot update other users data"
       );
     }
-    dataFields.update(item._id, {
-      $set: { complete: !item.complete }
+    Submissions.update(item._id, {
+      $set: { winner: !item.winner }
     });
   },
   // Removing a data
@@ -45,17 +45,17 @@ Meteor.methods({
         "You connot remove other users data"
       );
     }
-    dataFields.remove(item._id);
+    Submissions.remove(item._id);
   },
-  // Removing all completed data
-  "data.removeCompleted"(owner) {
+  // Removing all winnerd data
+  "data.removewinnerd"(owner) {
     if (owner !== this.userId) {
       throw new Meteor.Error(
-        "data.removeCompleted.not-authorized",
+        "data.removewinnerd.not-authorized",
         "You connot remove other users data"
       );
     }
 
-    Todo.remove({ owner: this.userId, complete: true });
+    Todo.remove({ owner: this.userId, winner: true });
   }
 });

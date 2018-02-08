@@ -1,1 +1,1 @@
-import "../../api/logic";
+import "../../api/submissions";

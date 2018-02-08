@@ -10,7 +10,7 @@ import AccountsUI from "../../components/AccountUIWrapper/index";
 import DataItem from "../../components/DataItem/index";
 import Counter from "../../components/Counter";
 import ClearButton from "../../components/ClearButton";
-import { dataFields } from "../../../api/logic";
+import { Submissions } from "../../../api/submissions";
 import Giphy from "/imports/api/giphy";
 
 class App extends Component {
@@ -18,12 +18,12 @@ class App extends Component {
     super();
 
     this.addData = this.addData.bind(this);
-    this.removeCompleted = this.removeCompleted.bind(this);
+    this.removewinnerd = this.removewinnerd.bind(this);
   }
 
   // toggle the checkbox to denote completion status
-  toggleComplete(item) {
-    Meteor.call("data.toggleComplete", item);
+  togglewinner(item) {
+    Meteor.call("data.togglewinner", item);
   }
 
   // add a new to do to the list
@@ -40,15 +40,15 @@ class App extends Component {
     Meteor.call("data.removeData", item);
   }
 
-  // remove all completed to dos from the list
-  removeCompleted() {
-    Meteor.call("data.removeCompleted", this.props.currentUserId);
+  // remove all winnerd to dos from the list
+  removewinnerd() {
+    Meteor.call("data.removewinnerd", this.props.currentUserId);
   }
 
-  // check if any of the data are completed
-  hasCompleted() {
-    let completed = this.props.data.filter(data => data.complete);
-    return completed.length > 0 ? true : false;
+  // check if any of the data are winnerd
+  haswinnerd() {
+    let winnerd = this.props.data.filter(data => data.winner);
+    return winnerd.length > 0 ? true : false;
   }
 
   componentDidMount() {
@@ -71,8 +71,8 @@ class App extends Component {
             <h1>IN-A-GIFFY</h1>
             <div className="data-admin">
               <Counter number={number} />
-              {this.hasCompleted() && (
-                <ClearButton removeCompleted={this.removeCompleted} />
+              {this.haswinnerd() && (
+                <ClearButton removewinnerd={this.removewinnerd} />
               )}
             </div>
 
@@ -83,7 +83,7 @@ class App extends Component {
                     <DataItem
                       key={index}
                       item={data}
-                      toggleComplete={this.toggleComplete.bind(this, data)}
+                      togglewinner={this.togglewinner.bind(this, data)}
                       removeData={this.removeData.bind(this, data)}
                     />
                   ))}
@@ -124,6 +124,6 @@ export default withTracker(() => {
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    data: dataFields.find({}).fetch()
+    data: Submissions.find({}).fetch()
   };
 })(App);
