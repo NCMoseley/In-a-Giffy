@@ -8,9 +8,10 @@ import "./styles.css";
 import { withTracker } from "meteor/react-meteor-data";
 import AccountsUI from "../../components/AccountUIWrapper/index";
 import DataItem from "../../components/DataItem/index";
-import Counter from "../../components/Counter";
-import ClearButton from "../../components/ClearButton";
+// import Counter from "../../components/Counter";
+// import ClearButton from "../../components/ClearButton";
 import { Submissions } from "../../../api/submissions";
+import CaptionField from "../../components/CaptionField";
 import Giphy from "/imports/api/giphy";
 
 class App extends Component {
@@ -69,12 +70,12 @@ class App extends Component {
           </div>
           <div className="data-list">
             <h1>IN-A-GIFFY</h1>
-            <div className="data-admin">
+            {/* <div className="data-admin">
               <Counter number={number} />
               {this.haswinnerd() && (
                 <ClearButton removewinnerd={this.removewinnerd} />
               )}
-            </div>
+            </div> */}
 
             {this.props.currentUser ? (
               <div>
@@ -89,11 +90,8 @@ class App extends Component {
                   ))}
                 </div>
                 <div className="add-data">
-                  <form name="addData" onSubmit={this.addData}>
-                    <input type="text" ref={ref => (this.dataInput = ref)} />
-                    <span>(press enter to add) </span>
-                    <Giphy />
-                  </form>
+                  <CaptionField handleSubmit={this.addData} />
+                  <Giphy />
                 </div>
               </div>
             ) : (
