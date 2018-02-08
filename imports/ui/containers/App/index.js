@@ -90,7 +90,10 @@ class App extends Component {
                   ))}
                 </div>
                 <div className="add-data">
-                  <CaptionField handleSubmit={this.addData} />
+                  <CaptionField
+                    handleSubmit={this.addData}
+                    input={ref => (this.dataInput = ref)}
+                  />
                   <Giphy />
                 </div>
               </div>
