@@ -11,6 +11,7 @@ import DataItem from "../../components/DataItem/index";
 import Counter from "../../components/Counter";
 import ClearButton from "../../components/ClearButton";
 import { dataFields } from "../../../api/logic";
+import Giphy from "/imports/api/giphy";
 
 class App extends Component {
   constructor() {
@@ -91,6 +92,7 @@ class App extends Component {
                   <form name="addData" onSubmit={this.addData}>
                     <input type="text" ref={ref => (this.dataInput = ref)} />
                     <span>(press enter to add) </span>
+                    <Giphy />
                   </form>
                 </div>
               </div>
