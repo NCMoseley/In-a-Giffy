@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+// import local style resources
+import "./styles.css";
+
+// import Material UI resources
 // import { MenuItem, RaisedButton } from "material-ui";
 import Paper from "material-ui/Paper";
-import "./styles.css";
 
 import { withTracker } from "meteor/react-meteor-data";
 import AccountsUI from "../../components/AccountUIWrapper/index";
@@ -69,7 +72,7 @@ class App extends Component {
             <AccountsUI />
           </div>
           <div className="data-list">
-            <h1>IN-A-GIFFY</h1>
+            <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
             {/* <div className="data-admin">
               <Counter number={number} />
               {this.haswinnerd() && (
