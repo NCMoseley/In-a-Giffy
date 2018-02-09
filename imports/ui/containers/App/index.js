@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Giphy from "../../components/Giphy"; // import Giphy front-end component
 import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
+import { Games } from "/imports/api/game";
 
 // import local style resources
 import "./styles.css";
@@ -135,10 +136,12 @@ App.propTypes = {
 
 export default withTracker(() => {
   Meteor.subscribe("giphyUrls"); // map from Mongo database to props
+  Meteor.subscribe("Games");
 
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    currentGiphyUrl: GiphyUrls.findOne()
+    currentGiphyUrl: GiphyUrls.findOne(),
+    currentGame: Games.find()
   };
 })(App);
