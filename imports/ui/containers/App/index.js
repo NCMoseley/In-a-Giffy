@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Giphy from "../../components/Giphy";
+import { GiphyUrls } from "/imports/api/giphy";
 
 // import local style resources
 import "./styles.css";
@@ -22,6 +24,7 @@ class App extends Component {
 
     this.addData = this.addData.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
+    this.getImage();
   }
 
   // toggle the checkbox to denote completion status
@@ -54,13 +57,16 @@ class App extends Component {
     return winnerd.length > 0 ? true : false;
   }
 
+  getImage() {
+    Meteor.call("giphyUrls.getImage");
+  }
+
   componentDidMount() {
     this.props.currentUser && this.dataInput.focus();
   }
 
   render() {
     let number = this.props.data.length;
-
     return (
       <div className="app-wrapper">
         <Paper
@@ -97,6 +103,7 @@ class App extends Component {
                     input={ref => (this.dataInput = ref)}
                   />
                 </div>
+                <Giphy url={this.props.currentGify.url} />
               </div>
             ) : (
               <div className="logged-out-message">
@@ -121,11 +128,14 @@ App.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("data");
+  Meteor.subscribe("currentGify");
+
+  const currentGify = GiphyUrls.findOne();
+  console.log(currentGify);
 
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    data: Submissions.find({}).fetch()
+    currentGify
   };
 })(App);
