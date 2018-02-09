@@ -26,6 +26,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # graphic design process files
-.psd
-
+*.psd
 
