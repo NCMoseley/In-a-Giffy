@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const DataItem = ({ item, togglewinner, removeData }) => (
   <div className="single-item">
-    <img src={item.title} />
+    <h1>{item.title}</h1>
     <input
       type="checkbox"
       id={item._id}

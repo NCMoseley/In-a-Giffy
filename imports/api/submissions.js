@@ -56,6 +56,6 @@ Meteor.methods({
       );
     }
 
-    Todo.remove({ owner: this.userId, winner: true });
+    Submissions.remove({ owner: this.userId, winner: true });
   }
 });
