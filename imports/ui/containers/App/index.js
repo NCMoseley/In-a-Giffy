@@ -15,7 +15,6 @@ import DataItem from "../../components/DataItem/index";
 // import ClearButton from "../../components/ClearButton";
 import { Submissions } from "../../../api/submissions";
 import CaptionField from "../../components/CaptionField";
-import Giphy from "/imports/api/giphy";
 
 class App extends Component {
   constructor() {
@@ -97,7 +96,6 @@ class App extends Component {
                     handleSubmit={this.addData}
                     input={ref => (this.dataInput = ref)}
                   />
-                  <Giphy />
                 </div>
               </div>
             ) : (
@@ -110,7 +108,7 @@ class App extends Component {
       </div>
     );
   }
-}
+} // End class App
 
 App.defaultProps = {
   data: []

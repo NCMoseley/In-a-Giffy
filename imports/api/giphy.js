@@ -7,23 +7,22 @@ export default class Giphy extends Component {
     const apiKey = "W9getAhiytCkVjqRtffNqlpcoX7kglmp"; // dev use only. TODO: request production key: https://developers.giphy.com/dashboard/apply/19405/
     const searchQuery = ""; // optional search query
     const apiEndpoint = apiUrl + "?api_key=" + apiKey + "&tag=" + searchQuery;
-    console.log("API Endpoint: ", apiEndpoint);
+    // console.log("API Endpoint: ", apiEndpoint);
 
     // https://docs.meteor.com/api/http.html
 
-    const giphyImageURL = HTTP.call("GET", apiEndpoint, (error, result) => {
+    const doTheThing = HTTP.call("GET", apiEndpoint, (error, result) => {
       if (!error) {
-        console.log(result.data.data.image_original_url);
-        return result.data.data.image_original_url;
+        const giphyImageURL = result.data.data.image_original_url;
+        const giphyImageElement =
+          "<img src='" + giphyImageURL + "' alt='Giphy image' />";
+
+        document.write(giphyImageElement);
       } else {
-        console.log("Error during Giphy API fetch");
+        return "Error during Giphy API fetch";
       }
     });
 
-    console.log(giphyImageURL);
-
-    return giphyImageURL !== undefined ? (
-      <img src={giphyImageURL} alt="In a .giffy" />
-    ) : null;
+    return null;
   }
 }

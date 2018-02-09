@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import React from "react";
 import ReactDOM from "react-dom";
+import Giphy from "/imports/api/giphy";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -10,7 +11,8 @@ import "./main.css";
 const InAGiffy = () => (
   <Router>
     <Switch>
-      <Route path="/" component={App} />
+      <Route exact path="/" component={App} />
+      <Route exact path="/giphy" component={Giphy} />
     </Switch>
   </Router>
 );
