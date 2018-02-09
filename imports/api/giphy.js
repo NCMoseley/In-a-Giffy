@@ -1,10 +1,10 @@
 import { Mongo } from "meteor/mongo";
 import { HTTP } from "meteor/http";
 
-export const GiphyUrls = new Mongo.Collection("giphyUrls");
+export const GiphyUrls = new Mongo.Collection("giphyUrls"); // create a collection to store Giphy images
 
 if (Meteor.isServer) {
-  Meteor.publish("currentGify", function() {
+  Meteor.publish("giphyUrls", function() {
     return GiphyUrls.findOne();
   });
 }

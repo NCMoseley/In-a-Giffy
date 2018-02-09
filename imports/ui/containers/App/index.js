@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Giphy from "../../components/Giphy";
-import { GiphyUrls } from "/imports/api/giphy";
+import Giphy from "../../components/Giphy"; // import Giphy front-end component
+import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
 
 // import local style resources
 import "./styles.css";
@@ -103,7 +103,13 @@ class App extends Component {
                     input={ref => (this.dataInput = ref)}
                   />
                 </div>
-                <Giphy url={this.props.currentGify.url} />
+                <Giphy
+                  url={
+                    this.props.currentGiphyUrl
+                      ? this.props.currentGiphyUrl.url
+                      : "images/iaglogo.png"
+                  }
+                />
               </div>
             ) : (
               <div className="logged-out-message">
@@ -128,14 +134,11 @@ App.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("currentGify");
-
-  const currentGify = GiphyUrls.findOne();
-  console.log(currentGify);
+  Meteor.subscribe("giphyUrls"); // map from Mongo database to props
 
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    currentGify
+    currentGiphyUrl: GiphyUrls.findOne()
   };
 })(App);
