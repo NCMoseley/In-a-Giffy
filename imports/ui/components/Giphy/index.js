@@ -17,7 +17,7 @@ const GiphyResult = ({ url }) => {
 };
 
 GiphyResult.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string
 };
 
 export default GiphyResult;

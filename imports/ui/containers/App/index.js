@@ -67,6 +67,7 @@ class App extends Component {
 
   render() {
     console.log("re-render??>");
+    console.log(this.props.currentGiphyUrl);
     let number = this.props.data.length;
     return (
       <div className="app-wrapper">
@@ -98,7 +99,11 @@ class App extends Component {
                     input={ref => (this.dataInput = ref)}
                   />
                 </div>
-                <Giphy url={this.props.currentGiphyUrl.url || ""} />
+                <Giphy
+                  url={
+                    this.props.currentGiphyUrl && this.props.currentGiphyUrl.url
+                  }
+                />
                 <StartButton handleClick={() => this.getImage()} />
               </div>
             ) : (
@@ -125,7 +130,7 @@ App.propTypes = {
 
 export default withTracker(() => {
   const handle = Meteor.subscribe("giphyUrls");
-  const url = GiphyUrls.find().fetch()[0];
+  const url = GiphyUrls.findOne();
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
