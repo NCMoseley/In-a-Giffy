@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const GiphyResult = ({ url }) => {
-  console.log(url);
   return (
     <div className="giphy-image-container">
-      <img src={url} alt="Giphy image" />
+      <div
+        style={{
+          width: "500px",
+          height: "500px",
+          backgroundImage: `url(${url})`
+        }}
+      />
+      {/* <img src={url} alt="Giphy image" /> */}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Giphy from "../../components/Giphy"; // import Giphy front-end component
 import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
-
+import StartButton from "../../components/StartButton";
 // import local style resources
 import "./styles.css";
 
@@ -62,6 +62,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("re-render??>");
     let number = this.props.data.length;
     return (
       <div className="app-wrapper">
@@ -71,12 +72,6 @@ class App extends Component {
           </div>
           <div className="content-wrapper">
             <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
-            {/* <div className="data-admin">
-              <Counter number={number} />
-              {this.haswinnerd() && (
-                <ClearButton removewinnerd={this.removewinnerd} />
-              )}
-            </div> */}
 
             {this.props.currentUser ? (
               <div>
@@ -96,13 +91,8 @@ class App extends Component {
                     input={ref => (this.dataInput = ref)}
                   />
                 </div>
-                <Giphy
-                  url={
-                    this.props.currentGiphyUrl
-                      ? this.props.currentGiphyUrl.url
-                      : "images/iaglogo.png"
-                  }
-                />
+                <Giphy url={this.props.currentGiphyUrl.url || ""} />
+                <StartButton handleClick={() => this.getImage()} />
               </div>
             ) : (
               <div className="logged-out-message">
@@ -127,11 +117,11 @@ App.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("giphyUrls"); // map from Mongo database to props
-
+  const handle = Meteor.subscribe("giphyUrls");
+  const url = GiphyUrls.find().fetch()[0];
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    currentGiphyUrl: GiphyUrls.findOne()
+    currentGiphyUrl: url
   };
 })(App);
