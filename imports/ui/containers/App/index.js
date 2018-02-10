@@ -6,10 +6,6 @@ import StartButton from "../../components/StartButton";
 // import local style resources
 import "./styles.css";
 
-// import Material UI resources
-// import { MenuItem, RaisedButton } from "material-ui";
-import Paper from "material-ui/Paper";
-
 import { withTracker } from "meteor/react-meteor-data";
 import AccountsUI from "../../components/AccountUIWrapper/index";
 import DataItem from "../../components/DataItem/index";
@@ -71,14 +67,11 @@ class App extends Component {
     let number = this.props.data.length;
     return (
       <div className="app-wrapper">
-        <Paper
-          zdepth={5}
-          style={{ backgroundColor: "transparent", width: "60vw" }}
-        >
+        <div>
           <div className="login-wrapper">
             <AccountsUI />
           </div>
-          <div className="data-list">
+          <div className="content-wrapper">
             <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
             {this.props.currentUser ? (
@@ -108,11 +101,11 @@ class App extends Component {
               </div>
             ) : (
               <div className="logged-out-message">
-                <p>Please sign in to see your data.</p>
+                <p>A party game of .gifs and funny captions.</p>
               </div>
             )}
           </div>{" "}
-        </Paper>
+        </div>
       </div>
     );
   }
