@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import local style resources
-// import "./styles.css";
+import "./styles.css";
 // import Material UI resources
 // import { MenuItem, RaisedButton } from "material-ui";
 import Paper from "material-ui/Paper";
@@ -26,22 +25,15 @@ class FrontPage extends Component {
   render() {
     return (
       <div className="frontpage-wrapper">
-        <Paper
-          zdepth={5}
-          style={{ backgroundColor: "transparent", width: "60vw" }}
-        >
-          {/* <div className="login-wrapper">
-            <AccountsUI />
-          </div> */}
+        <div>
           <div className="frontpage">
             <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
-            {!this.props.currentUser ? (
-              <AccountsUI />
-            ) : (
-              <button onClick={onClickCreateNewGame()}>Create New Game</button>
-            )}
+
+            {/* <button onClick={onClickCreateNewGame()}>Create New Game</button> onClickCreateNewGame is not defined*/}
+            <button>Create a New Game!</button>
+            <button>Join a Game</button>
           </div>{" "}
-        </Paper>
+        </div>
       </div>
     );
   }
