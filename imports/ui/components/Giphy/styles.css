@@ -1,0 +1,6 @@
+.giphy-image-container {
+  width: 500px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
