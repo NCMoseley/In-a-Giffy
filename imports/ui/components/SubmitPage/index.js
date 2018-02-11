@@ -1,21 +1,17 @@
 import React, { Component } from "react";
+import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import "./styles.css";
-// import Material UI resources
-// import { MenuItem, RaisedButton } from "material-ui";
-import Paper from "material-ui/Paper";
-// import { withTracker } from "meteor/react-meteor-data";
-import AccountsUI from "../AccountUIWrapper/index";
-import DataItem from "../DataItem/index";
-// import Counter from "../../components/Counter";
-// import ClearButton from "../../components/ClearButton";
-import { Submissions } from "../../../api/submissions";
-import CaptionField from "../CaptionField/index";
-import { gameRounds } from "../../../api/gameround";
-import { withTracker } from "meteor/react-meteor-data";
+
+// import components
+import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
 import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
-import Giphy from "../../components/Giphy"; // import Giphy front-end component
-import StartButton from "../../components/StartButton";
+import StartButton from "/imports/ui/components/StartButton";
+import { Submissions } from "/imports/api/submissions";
+import CaptionField from "/imports/ui/components/CaptionField";
+import { gameRounds } from "/imports/api/gameround";
+import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
+import DataItem from "/imports/ui/components/DataItem/index";
 
 class SubmitPage extends Component {
   constructor() {
