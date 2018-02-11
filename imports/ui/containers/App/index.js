@@ -3,7 +3,10 @@ import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import "./styles.css";
 
-// import components
+// import Material UI components
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+
+// import app components
 import Giphy from "/imports/ui/components/Giphy"; // Giphy front-end component
 import { GiphyUrls } from "/imports/api/giphy"; // Giphy back-end collection
 import StartButton from "/imports/ui/components/StartButton";
@@ -24,27 +27,29 @@ class App extends Component {
     let number = this.props.data.length;
     return (
       <div className="app-wrapper">
-        <div>
-          <div className="login-wrapper">
-            <AccountsUI />
+        <MuiThemeProvider>
+          <div>
+            <div className="login-wrapper">
+              <AccountsUI />
+            </div>
+            <div className="content-wrapper">
+              {this.props.currentUser ? (
+                // display this when the user logs in
+                <FrontPage />
+              ) : (
+                // display this before the user has looged in
+                <div className="logged-out-message">
+                  <img
+                    className="logo"
+                    src="images/iaglogo.png"
+                    alt="In a .giffy!"
+                  />
+                  <p>A party game of .gifs and funny captions.</p>
+                </div>
+              )}
+            </div>{" "}
           </div>
-          <div className="content-wrapper">
-            {this.props.currentUser ? (
-              // display this when the user logs in
-              <FrontPage />
-            ) : (
-              // display this before the user has looged in
-              <div className="logged-out-message">
-                <img
-                  className="logo"
-                  src="images/iaglogo.png"
-                  alt="In a .giffy!"
-                />
-                <p>A party game of .gifs and funny captions.</p>
-              </div>
-            )}
-          </div>{" "}
-        </div>
+        </MuiThemeProvider>
       </div>
     );
   }
