@@ -2,7 +2,7 @@ import { Meteor } from "meteor/meteor";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Giphy from "/imports/api/giphy";
+import FrontPage from "/imports/ui/components/FrontPage";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const InAGiffy = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={App} />
-      <Route exact path="/giphy" component={Giphy} />
+      <Route exact path="/frontpagetest" component={FrontPage} />
       {/* <Route exact path="/round" component={GameRound} /> */}
     </Switch>
   </Router>
