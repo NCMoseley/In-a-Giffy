@@ -167,8 +167,9 @@ input {
 }
 
 body {
-  /* background-color: #2e2e2e; */
   background-image: linear-gradient(rgb(72, 133, 202), rgb(255, 110, 54));
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 #root {
