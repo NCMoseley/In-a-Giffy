@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import FrontPage from "/imports/ui/components/FrontPage";
+import SubmitPage from "/imports/ui/components/SubmitPage";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const InAGiffy = () => (
     <Switch>
       <Route exact path="/" component={App} />
       <Route exact path="/frontpagetest" component={FrontPage} />
+      <Route exact path="/submitpagetest" component={SubmitPage} />
       {/* <Route exact path="/round" component={GameRound} /> */}
     </Switch>
   </Router>
