@@ -16,8 +16,9 @@ const Caption = ({ item }) => (
 Caption.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-    // complete: PropTypes.bool.isRequired
+    title: PropTypes.string.isRequired,
+    winner: PropTypes.bool.isRequired,
+    owner: PropTypes.string.isRequired
   })
   // toggleComplete: PropTypes.func.isRequired,
   // removeToDo: PropTypes.func.isRequired

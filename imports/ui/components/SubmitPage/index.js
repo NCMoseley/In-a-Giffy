@@ -10,9 +10,9 @@ import StartButton from "/imports/ui/components/StartButton";
 import { Submissions } from "/imports/api/submissions";
 import CaptionField from "/imports/ui/components/CaptionField";
 import { gameRounds } from "/imports/api/gameround";
-import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
-import DataItem from "/imports/ui/components/DataItem/index";
-import Caption from "../Caption";
+import AccountsUI from "/imports/ui/components/AccountUIWrapper";
+import DataItem from "/imports/ui/components/DataItem";
+import Caption from "/imports/ui/components/Caption";
 
 class SubmitPage extends Component {
   constructor() {
@@ -69,19 +69,22 @@ class SubmitPage extends Component {
   }
 
   render() {
-    console.log(this.props.captions);
+    console.log(this.props.captions[0]);
     return (
       <div>
-        <div className="data-container">
-          {this.props.data.map((data, index) => (
-            <DataItem
-              key={index}
-              item={data}
-              togglewinner={this.togglewinner.bind(this, data)}
-              removeData={this.removeData.bind(this, data)}
-            />
-          ))}
-        </div>
+        <ul>
+          {this.props.captions.length > 0 ? (
+            this.props.captions.map((caption, index) => (
+              <Caption item={caption} key={index} />
+            ))
+          ) : (
+            <p> No caption to display </p>
+          )}
+        </ul>
+
+        <Giphy
+          url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
+        />
 
         <div className="add-data">
           <CaptionField
@@ -90,17 +93,6 @@ class SubmitPage extends Component {
           />
         </div>
 
-        <ul>
-          {this.props.captions.length > 0
-            ? this.props.captions.map((caption, index) => {
-                <Caption item={caption} key={index} />;
-              })
-            : null}
-        </ul>
-
-        <Giphy
-          url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
-        />
         <StartButton handleClick={() => this.getImage()} />
       </div>
     );
