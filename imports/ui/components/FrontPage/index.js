@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./styles.css";
 
 // import Material UI components
 import { MenuItem, RaisedButton, FlatButton } from "material-ui";
@@ -25,16 +24,12 @@ class FrontPage extends Component {
 
   render() {
     return (
-      <div className="frontpage-wrapper">
-        <div>
-          <div className="frontpage">
-            <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
+      <div className="content-wrapper">
+        <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
-            {/* <button onClick={onClickCreateNewGame()}>Create New Game</button> onClickCreateNewGame is not defined*/}
-            <Paper>Create a New Game!</Paper>
-            <button>Join a Game</button>
-          </div>{" "}
-        </div>
+        {/* <button onClick={onClickCreateNewGame()}>Create New Game</button> onClickCreateNewGame is not defined*/}
+        <button>Create New Game</button>
+        <button>Join Game</button>
       </div>
     );
   }
