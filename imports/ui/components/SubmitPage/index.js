@@ -12,6 +12,7 @@ import CaptionField from "/imports/ui/components/CaptionField";
 import { gameRounds } from "/imports/api/gameround";
 import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
 import DataItem from "/imports/ui/components/DataItem/index";
+import Caption from "../Caption";
 
 class SubmitPage extends Component {
   constructor() {
@@ -30,11 +31,18 @@ class SubmitPage extends Component {
   // add a new to do to the list
   addData(event) {
     event.preventDefault();
-    if (this.dataInput.value) {
-      Meteor.call("data.addData", this.dataInput.value);
-      this.dataInput.value = "";
-    }
+
+    Meteor.call("submissions.addData", this.dataInput.value);
   }
+
+  // addData(event) {
+  //   event.preventDefault();
+  //   console.log(this.dataInput.value);
+  //   if (this.dataInput.value) {
+  //     Meteor.call("submissions.addData", this.dataInput.value);
+  //     this.dataInput.value = "";
+  //   }
+  // }
 
   // remove a to do from the list
   removeData(item) {
@@ -61,6 +69,7 @@ class SubmitPage extends Component {
   }
 
   render() {
+    console.log(this.props.captions);
     return (
       <div>
         <div className="data-container">
@@ -77,9 +86,17 @@ class SubmitPage extends Component {
         <div className="add-data">
           <CaptionField
             handleSubmit={this.addData}
-            input={ref => (this.dataInput = ref)}
+            input={ref => (this.dataInput = ref)} //?
           />
         </div>
+
+        <ul>
+          {this.props.captions.length > 0
+            ? this.props.captions.map((caption, index) => {
+                <Caption item={caption} key={index} />;
+              })
+            : null}
+        </ul>
 
         <Giphy
           url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
@@ -102,10 +119,13 @@ SubmitPage.propTypes = {
 
 export default withTracker(() => {
   const handle = Meteor.subscribe("giphyUrls");
+  const handleSubmissions = Meteor.subscribe("submissions");
   const url = GiphyUrls.findOne();
+  const captions = Submissions.find({}).fetch();
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    currentGiphyUrl: url
+    currentGiphyUrl: url,
+    captions: captions
   };
 })(SubmitPage);
