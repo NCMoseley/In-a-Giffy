@@ -3,16 +3,18 @@ import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import "./styles.css";
 
-// import components
-import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
-import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
-import StartButton from "/imports/ui/components/StartButton";
-import { Submissions } from "/imports/api/submissions";
-import CaptionField from "/imports/ui/components/CaptionField";
+// import collections
 import { gameRounds } from "/imports/api/gameround";
+import { GiphyUrls } from "/imports/api/giphy";
+import { Submissions } from "/imports/api/submissions";
+
+// import components
 import AccountsUI from "/imports/ui/components/AccountUIWrapper";
-import DataItem from "/imports/ui/components/DataItem";
 import Caption from "/imports/ui/components/Caption";
+import CaptionField from "/imports/ui/components/CaptionField";
+import DataItem from "/imports/ui/components/DataItem";
+import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
+import StartButton from "/imports/ui/components/StartButton";
 
 class SubmitPage extends Component {
   constructor() {
