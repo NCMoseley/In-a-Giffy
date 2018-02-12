@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
-// import { gameRounds } from "../../../api/gameround";
+
+// import collections
+import { gameRounds } from "/imports/api/gameround";
 
 // if (Meteor.isServer) {
 //   Meteor.publish("gameRoundUpdate", function() {
@@ -11,6 +13,7 @@ import PropTypes from "prop-types";
 
 class GameRound extends Component {
   render() {
+    console.log(Meteor.users.find().fetch()[0]);
     return (
       <p>GameRound component</p>
       // display who has joined the game and their details
@@ -21,8 +24,7 @@ class GameRound extends Component {
 } // End class GameRound
 
 export default withTracker(() => {
-  Meteor.subscribe("gameRoundUpdate");
-  Meteor.subscribe("users");
+  // Meteor.subscribe("gameRoundUpdate");
   return {
     // users: users.find({}).fetch(), // need to get users out of the users collection
     currentUser: Meteor.user(),
