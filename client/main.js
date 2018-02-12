@@ -17,7 +17,7 @@ const InAGiffy = () => (
       <Route exact path="/" component={App} />
       <Route exact path="/frontpagetest" component={FrontPage} />
       <Route exact path="/submitpagetest" component={SubmitPage} />
-      {/* <Route exact path="/round" component={GameRound} /> */}
+      <Route exact path="/gameroundtest" component={GameRound} />
     </Switch>
   </Router>
 );
