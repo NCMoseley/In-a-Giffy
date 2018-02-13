@@ -27,18 +27,16 @@ class FrontPage extends Component {
     Meteor.call("games.create");
   }
 
-  // joinGame() {
-  //   Meteor.call("Games.play");
-  // }
-
   render() {
     return (
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
-        <button onClick={this.createNewGame}>Place Holder Create</button>
+        <button onClick={this.createNewGame}>Create New Game</button>
 
-        <button>Place Holder Join</button>
+        <a href="/gamelisttest">
+          <button>Join Game</button>
+        </a>
       </div>
     );
   }

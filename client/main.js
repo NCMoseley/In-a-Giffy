@@ -7,7 +7,8 @@ import "./main.css";
 // import components
 import App from "/imports/ui/containers/App";
 import FrontPage from "/imports/ui/components/FrontPage";
-import GameRound from "/imports/ui/components/GameRound/index";
+import GameList from "/imports/ui/components/GameList";
+import GameRound from "/imports/ui/components/GameRound";
 import SubmitPage from "/imports/ui/components/SubmitPage";
 
 const InAGiffy = () => (
@@ -17,6 +18,7 @@ const InAGiffy = () => (
       <Route exact path="/frontpagetest" component={FrontPage} />
       <Route exact path="/submitpagetest" component={SubmitPage} />
       <Route exact path="/gameroundtest" component={GameRound} />
+      <Route exact path="/gamelisttest" component={GameList} />
     </Switch>
   </Router>
 );
