@@ -18,13 +18,13 @@ class FrontPage extends Component {
     super();
   }
 
-  createNewGame() {
-    Meteor.call("Games.play");
-  }
+  // createNewGame() {
+  //   Meteor.call("Games.play");
+  // }
 
-  joinGame() {
-    Meteor.call("Games.play");
-  }
+  // joinGame() {
+  //   Meteor.call("Games.play");
+  // }
 
   render() {
     return (
