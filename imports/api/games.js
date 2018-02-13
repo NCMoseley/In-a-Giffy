@@ -34,8 +34,16 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
+    const array = game.users;
+
+    if (array.includes(this.userId)) {
+      console.log("player is already in the game");
+    } else {
+      array.push(this.userId);
+    }
+
     Games.update(game._id, {
-      $set: { users: "new user" }
+      $set: { users: array }
     });
   }
 
