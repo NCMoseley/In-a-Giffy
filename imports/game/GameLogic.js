@@ -1,32 +1,30 @@
-// export const GameStatuses = {
-//   WAITING: "WAITING", // waiting player to join
-//   STARTED: "STARTED", // all spots are filled; can start playing
-//   FINISHED: "FINISHED", // game is finished
-//   ABANDONED: "ABANDONED" // all players left; game is abandoned
-// };
+export const GameStatuses = {
+  WAITING: "WAITING", // waiting player to join
+  STARTED: "STARTED" // all spots are filled; can start playing
+};
 
 export class GameLogic {
-  constructor(gameDoc) {
+  constructor() {
+    // super();
     {
-      // this.status = GameStatuses.WAITING;
+      this.status = GameStatuses.WAITING;
       this.players = [];
     }
   }
 
   newGame(user) {
-    let game = new Game();
-    game.joinGame(user);
-
     if (!this.userIsAlreadyPlaying()) {
       Games.insert({
         player1: Meteor.userId(),
         player2: "",
         player3: "",
         player4: "",
-        status: "waiting",
+        status: "WAITING",
         result: ""
       });
     }
+    let game = new Game();
+    game.joinGame(user);
   }
 
   userIsAlreadyPlaying() {
@@ -47,7 +45,7 @@ export class GameLogic {
   joinGame(gameId, user) {
     let game = Games.findOne(gameId);
     game.joinGame(user);
-    Games.newGame(game);
+    // Games.newGame(game);
     if (this.status !== GameStatuses.WAITING) {
       throw "cannot join at current state";
     }
@@ -56,8 +54,8 @@ export class GameLogic {
     }
 
     this.players.push({
-      userId: user._id,
-      username: user.username
+      userId: user._id
+      // username: user.username
     });
 
     // game automatically start with 3 players

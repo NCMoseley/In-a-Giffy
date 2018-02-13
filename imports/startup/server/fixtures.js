@@ -1,9 +1,10 @@
 import { Meteor } from "meteor/meteor";
 import { accounts } from "meteor/accounts-base";
 import { submissions } from "../../api/submissions";
+import { Games } from "../../api/game";
 
 Meteor.startup(() => {
-  if (Meteor.users.find().count() === 0) {
+  if (Meteor.users.find().count() < 2) {
     let userId = Accounts.createUser({
       email: "e@easy.com",
       password: "eee"

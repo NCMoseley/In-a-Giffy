@@ -1,29 +1,25 @@
 import { Mongo } from "meteor/mongo";
-import { GameLogic } from "../game/GameLogic.js";
+import { GameLogic, GameStatuses } from "../game/GameLogic.js";
 
 // https://github.com/hiukim/meteor-multiplayers-game-tutorial
-export const Games = new Mongo.Collection("games");
+export const Games = new Mongo.Collection("games", () => {
+  return Games.find();
+});
 
 if (Meteor.isServer) {
   Meteor.publish("Games", function() {
-    return Games.find();
+    return Meteor.Games.find();
   });
 }
 
-// {
-//   transform(doc) {
-//     return new Game(doc);
-//   }
-// }));
-
 Meteor.methods({
-  "games.play"() {
+  "Games.play"() {
     const game = Games.findOne({ status: "waiting" });
 
     if (game === undefined) {
       gameLogic.newGame();
     } else if (game !== undefined) {
-      gameLogic.joinGame(game);
+      gameLogic.joinGame(user);
     }
   }
 });
