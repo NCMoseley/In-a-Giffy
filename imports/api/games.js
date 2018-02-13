@@ -25,16 +25,19 @@ Meteor.methods({
       users: [this.userId],
       judge: this.userId // The game creator is judge for round one.
     });
-  }
+  },
 
-  // "games.play"() {
-  //   const game = Games.findOne({ status: "waiting" });
-  //   if (game === undefined) {
-  //     gameLogic.newGame();
-  //   } else if (game !== undefined) {
-  //     gameLogic.joinGame(user);
-  //   }
-  // }
+  // join an existing game
+  "games.join"(game) {
+    // Make sure the user is logged in before inserting a task
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Games.update(game._id, {
+      $set: { users: "new user" }
+    });
+  }
 
   // if (Meteor.isServer) {
   //   Meteor.publish("gameRoundUpdate", function() {

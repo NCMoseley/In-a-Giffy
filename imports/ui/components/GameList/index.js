@@ -8,21 +8,41 @@ import { Games } from "/imports/api/games";
 class GameList extends Component {
   constructor() {
     super();
+
+    this.joinGame = this.joinGame.bind(this);
   }
 
-  joinGame() {
-    Meteor.call("games.join"); // doesn't exist yet
+  joinGame(game) {
+    Meteor.call("games.join", game); // doesn't exist yet
   }
 
   render() {
+    console.log(this.props.games);
     return (
-      <div>
+      <div className="app-wrapper">
         <ul>
-          <li>games list here..</li>
+          {this.props.games.length > 0 ? (
+            this.props.games.map((game, index) => (
+              <li>
+                <button
+                  game={game._id}
+                  onClick={this.joinGame.bind(this, game)}
+                >{`Game ${game._id} hosted by ${game.judge}`}</button>
+              </li>
+            ))
+          ) : (
+            <li>No games to display</li>
+          )}
         </ul>
       </div>
     );
   }
 }
 
-export default GameList;
+export default withTracker(() => {
+  const gameList = Meteor.subscribe("games");
+  const games = Games.find({}).fetch();
+  return {
+    games: games
+  };
+})(GameList);
