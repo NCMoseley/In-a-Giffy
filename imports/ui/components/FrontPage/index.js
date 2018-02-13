@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 
 // import Material UI components
@@ -7,7 +8,7 @@ import Paper from "material-ui/Paper";
 // import FlatButton from "material-ui/FlatButton";
 
 // import collections
-import { gameRounds } from "/imports/api/gameround";
+import { Games } from "/imports/api/games";
 import { Submissions } from "/imports/api/submissions";
 
 // import components
@@ -18,11 +19,13 @@ import DataItem from "/imports/ui/components/DataItem/index";
 class FrontPage extends Component {
   constructor() {
     super();
+
+    this.createNewGame = this.createNewGame.bind(this);
   }
 
-  // createNewGame() {
-  //   Meteor.call("Games.play");
-  // }
+  createNewGame() {
+    Meteor.call("games.create");
+  }
 
   // joinGame() {
   //   Meteor.call("Games.play");
@@ -33,13 +36,18 @@ class FrontPage extends Component {
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
-        {/* <button onClick={createNewGame()}>Create New Game</button> */}
-        <button>Place Holder Create</button>
-        {/* <button onClick={joinGame()}>Join Game</button> */}
+        <button onClick={this.createNewGame}>Place Holder Create</button>
+
         <button>Place Holder Join</button>
       </div>
     );
   }
 } // End class FrontPage
 
-export default FrontPage;
+export default withTracker(() => {
+  const games = Games.find({}).fetch();
+  return {
+    // not sure if we need this, but I gotta put something cause it won't let you return null
+    currentGame: null
+  };
+})(FrontPage);

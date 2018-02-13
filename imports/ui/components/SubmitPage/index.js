@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 // import collections
-import { gameRounds } from "/imports/api/gameround";
+import { Games } from "/imports/api/games";
 import { GiphyUrls } from "/imports/api/giphy";
 import { Submissions } from "/imports/api/submissions";
 

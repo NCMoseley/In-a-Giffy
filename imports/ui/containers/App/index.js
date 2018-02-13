@@ -7,7 +7,7 @@ import "./styles.css";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 // import collections
-import { Games } from "/imports/api/game";
+import { Games } from "/imports/api/games";
 import Giphy from "../../components/Giphy"; // import Giphy front-end component
 import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
 

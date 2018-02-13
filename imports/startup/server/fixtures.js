@@ -2,7 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { accounts } from "meteor/accounts-base";
 
 // import collections
-import { Games } from "/imports/api/game";
+import { Games } from "/imports/api/games";
 import { Submissions } from "/imports/api/submissions";
 
 Meteor.startup(() => {

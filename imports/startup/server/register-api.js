@@ -1,4 +1,4 @@
 import "../../api/submissions";
 import "../../api/giphy";
-import "../../api/game";
+import "../../api/games";
 import "../../api/gameround";
