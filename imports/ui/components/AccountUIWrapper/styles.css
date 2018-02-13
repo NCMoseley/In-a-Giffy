@@ -55,7 +55,7 @@
 }
 
 .accounts-dialog input:focus {
-  border-bottom-color: #4ccbb0;
+  border-bottom-color: rgb(72, 133, 202);
 }
 
 .login-link-and-dropdown-list {
@@ -64,6 +64,7 @@
 }
 
 .login-link-text {
+  /* the sign in text at the top of the page */
   color: white;
   display: inline-block;
   margin-bottom: 0.5rem;
@@ -90,17 +91,18 @@
 [id="signup-link"]:hover,
 [id="forgot-password-link"]:hover,
 [id="back-to-login-link"]:hover {
-  color: #4ccbb0;
+  color: rgb(72, 133, 202);
 }
 
 [id="login-buttons-password"],
 [id="login-buttons-open-change-password"],
 [id="login-buttons-logout"] {
   cursor: pointer;
+  background-color: rgb(72, 133, 202);
 }
 
 [id="login-buttons-open-change-password"]:hover {
-  color: #4ccbb0;
+  color: rgb(72, 133, 202);
 }
 
 [id="login-buttons-open-change-password"] {
@@ -110,7 +112,7 @@
 
 [id="login-buttons-logout"],
 .login-button-form-submit {
-  background-color: transparent;
+  background-color: rgb(72, 133, 202);
   color: white;
   display: block;
   padding: 0.25rem 0.5rem;
@@ -119,7 +121,7 @@
 
 [id="login-buttons-logout"]:hover,
 .login-button-form-submit:hover {
-  background-color: #4ccbb0;
+  background-color: rgb(72, 133, 202);
 }
 
 [id="login-email-label-and-input"],
