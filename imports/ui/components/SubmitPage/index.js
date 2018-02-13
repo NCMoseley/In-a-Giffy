@@ -34,13 +34,14 @@ class SubmitPage extends Component {
     Meteor.call("data.togglewinner", item);
   }
 
+  //appending game on text to notify players game is on
   gameStart() {
     this.setState({
       start: !this.state.start
     });
   }
 
-  // add a new to do to the list
+  // adding a new caption
 
   addData(event) {
     event.preventDefault();
@@ -50,8 +51,13 @@ class SubmitPage extends Component {
         Meteor.call("submissions.addData", this.dataInput.value);
         this.dataInput.value = "";
       }
-    }, 8000);
+      this.setState({
+        start: false
+      });
+    }, 10000);
   }
+
+  getJudge() {}
 
   // remove a to do from the list
   removeData(item) {
@@ -79,6 +85,13 @@ class SubmitPage extends Component {
 
   render() {
     // console.log(this.props.captions[0]);
+    let judge;
+    if (this.props.users[0]) {
+      judge = this.props.users[0].users[0];
+    }
+    // console.log(judge);
+    // console.log(this.props.currentUserId);
+
     return (
       <div>
         <ul>
@@ -105,7 +118,9 @@ class SubmitPage extends Component {
           {this.state.start && <h1> Game On! </h1>}
         </div>
 
-        <StartButton handleClick={() => this.getImage()} />
+        {judge === this.props.currentUserId ? (
+          <StartButton handleClick={() => this.getImage()} />
+        ) : null}
       </div>
     );
   }
@@ -124,12 +139,15 @@ SubmitPage.propTypes = {
 export default withTracker(() => {
   const handle = Meteor.subscribe("giphyUrls");
   const handleSubmissions = Meteor.subscribe("submissions");
+  const handleGame = Meteor.subscribe("games");
   const url = GiphyUrls.findOne();
   const captions = Submissions.find({}).fetch();
+  const users = Games.find({}).fetch();
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
     currentGiphyUrl: url,
-    captions: captions
+    captions: captions,
+    users: users
   };
 })(SubmitPage);
