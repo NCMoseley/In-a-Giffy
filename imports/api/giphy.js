@@ -31,7 +31,7 @@ Meteor.methods({
 
     const giphurl = getApi("GET", apiEndpoint)
       .then(result => {
-        console.log(result);
+        // console.log(result);
         return result.data.data.image_original_url;
       })
       .catch(error => {
