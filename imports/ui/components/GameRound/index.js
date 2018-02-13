@@ -3,7 +3,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 
 // import collections
-import { gameRounds } from "/imports/api/gameround";
+import { Games } from "/imports/api/games";
 
 // if (Meteor.isServer) {
 //   Meteor.publish("gameRoundUpdate", function() {
