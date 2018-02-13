@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
+import { BrowserRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // import collections
@@ -18,6 +19,7 @@ class GameList extends Component {
 
   render() {
     console.log(this.props.games);
+
     return (
       <div className="content-wrapper">
         <div>
@@ -25,10 +27,12 @@ class GameList extends Component {
             {this.props.games.length > 0 ? (
               this.props.games.map((game, index) => (
                 <li>
-                  <button
-                    game={game._id}
-                    onClick={this.joinGame.bind(this, game)}
-                  >{`Game ${game._id} hosted by ${game.host}`}</button>
+                  <Link to={`/submitpagetest/${game._id}`}>
+                    <button
+                      game={game._id}
+                      onClick={this.joinGame.bind(this, game)}
+                    >{`Game ${game._id} hosted by ${game.host}`}</button>
+                  </Link>
                 </li>
               ))
             ) : (
