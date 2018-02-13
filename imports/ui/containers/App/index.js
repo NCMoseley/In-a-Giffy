@@ -12,8 +12,6 @@ import "./styles.css";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 // import app components
-import Giphy from "/imports/ui/components/Giphy"; // Giphy front-end component
-import { GiphyUrls } from "/imports/api/giphy"; // Giphy back-end collection
 import StartButton from "/imports/ui/components/StartButton";
 import { Submissions } from "/imports/api/submissions";
 import CaptionField from "/imports/ui/components/CaptionField";
@@ -27,7 +25,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("re-render??>");
+    // console.log("re-render??>");
     console.log(this.props.currentGiphyUrl);
     let number = this.props.data.length;
     return (
@@ -73,14 +71,12 @@ App.propTypes = {
 export default withTracker(() => {
   const handle = Meteor.subscribe("giphyUrls"); // map from Mongo database to props
   const game = Meteor.subscribe("Games");
-
-  const url = GiphyUrls.findOne(),
+  const url = GiphyUrls.findOne();
 
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
     currentGiphyUrl: url,
-    currentGame: Games.find()
-    
+    currentGame: Games.find().fetch()
   };
 })(App);
