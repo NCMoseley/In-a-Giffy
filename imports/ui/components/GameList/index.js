@@ -19,21 +19,23 @@ class GameList extends Component {
   render() {
     console.log(this.props.games);
     return (
-      <div className="app-wrapper">
-        <ul>
-          {this.props.games.length > 0 ? (
-            this.props.games.map((game, index) => (
-              <li>
-                <button
-                  game={game._id}
-                  onClick={this.joinGame.bind(this, game)}
-                >{`Game ${game._id} hosted by ${game.host}`}</button>
-              </li>
-            ))
-          ) : (
-            <li>No games to display</li>
-          )}
-        </ul>
+      <div className="content-wrapper">
+        <div>
+          <ul>
+            {this.props.games.length > 0 ? (
+              this.props.games.map((game, index) => (
+                <li>
+                  <button
+                    game={game._id}
+                    onClick={this.joinGame.bind(this, game)}
+                  >{`Game ${game._id} hosted by ${game.host}`}</button>
+                </li>
+              ))
+            ) : (
+              <li>No games to display</li>
+            )}
+          </ul>
+        </div>
       </div>
     );
   }
