@@ -2,17 +2,24 @@
 /*-----------------------------------------*/
 
 .logo {
-  max-width: 100%;
+  height: 300px;
+  width: 300px;
 }
 
-.data-list {
-  align-self: center;
-  /* background-color: white; */
+.logged-out-message {
+  color: white;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   width: 60vw;
 }
 
-.data-list h1 {
+.content-wrapper h1 {
   background-color: transparent;
   /* border-top-left-radius: 5px; */
   /* border-top-right-radius: 5px; */
@@ -23,7 +30,7 @@
   font-size: 68px;
 }
 
-.data-list li {
+.content-wrapper li {
   border-bottom: 1px solid #dbdbdb;
   display: flex;
   font-size: 1.25rem;
@@ -31,18 +38,18 @@
   align-items: flex-start;
 }
 
-.data-list div span {
+.content-wrapper div span {
   flex: 1 0 60%;
   font-size: 0.9rem;
   margin-right: 1rem;
   margin-top: 0.33333rem;
 }
 
-.data-list div input[type="checkbox"] {
+.content-wrapper div input[type="checkbox"] {
   display: none;
 }
 
-.data-list div input[type="checkbox"] + label:before {
+.content-wrapper div input[type="checkbox"] + label:before {
   display: inline-block;
   color: #c2c2c2;
   content: "\f10c";
@@ -52,26 +59,30 @@
   margin-left: 1rem;
 }
 
-.data-list div input[type="checkbox"] + label:hover::before {
+.content-wrapper div input[type="checkbox"] + label:hover::before {
   color: #4ccbb0;
 }
 
-.data-list div input[type="checkbox"]:checked + label:before {
+.content-wrapper div input[type="checkbox"]:checked + label:before {
   color: #4ccbb0;
   content: "\f05d";
 }
 
-.data-list div button {
-  background: transparent;
-  border: 0;
-  color: #c2c2c2;
-  cursor: pointer;
-  font-size: 1.25rem;
-  padding: 0;
+.logo {
+  margin-bottom: 1rem;
 }
 
-.data-list div button:hover {
-  color: #fa4f4f;
+.content-wrapper div button {
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.content-wrapper div button:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .add-data {

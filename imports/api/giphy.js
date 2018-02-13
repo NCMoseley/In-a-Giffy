@@ -5,7 +5,9 @@ export const GiphyUrls = new Mongo.Collection("giphyUrls"); // create a collecti
 
 if (Meteor.isServer) {
   Meteor.publish("giphyUrls", function() {
-    return GiphyUrls.findOne();
+    return GiphyUrls.find()
+      .sort({ url: -1 })
+      .limit(1);
   });
 }
 
@@ -34,14 +36,18 @@ Meteor.methods({
         console.log(result);
         return result.data.data.image_original_url;
       })
-
       .catch(error => {
         throw new Meteor.Error("500", `${error.message}`);
       })
-      .then(res =>
-        GiphyUrls.insert({
-          url: res
-        })
-      );
+      .then(res => {
+        if (!GiphyUrls.find("420").count()) {
+          GiphyUrls.insert({ _id: "420", url: "" });
+        }
+        GiphyUrls.update("420", {
+          $set: {
+            url: res
+          }
+        });
+      });
   }
 });

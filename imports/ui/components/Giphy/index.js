@@ -1,17 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./styles.css";
 
 const GiphyResult = ({ url }) => {
-  console.log(url);
   return (
-    <div className="giphy-image-container">
-      <img src={url} alt="Giphy image" />
-    </div>
+    <div
+      className="giphy-image-container"
+      style={{
+        backgroundImage: `url(${url})`
+      }}
+    />
+    // <img src={url} alt="Giphy image" />
   );
 };
 
 GiphyResult.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string
 };
 
 export default GiphyResult;

@@ -4,17 +4,17 @@ import { Meteor } from "meteor/meteor";
 export const Submissions = new Mongo.Collection("submissions");
 
 if (Meteor.isServer) {
-  Meteor.publish("data", function todosPublication() {
+  Meteor.publish("submissions", function todosPublication() {
     return Submissions.find({ owner: this.userId });
   });
 }
 
 Meteor.methods({
   // Adding
-  "data.addData"(inputValue) {
+  "submissions.addData"(inputValue) {
     if (!this.userId) {
       throw new Meteor.Error(
-        "data.addData.not-authorized",
+        "submissions.addData.not-authorized",
         "You must be logged in to create a data"
       );
     }
