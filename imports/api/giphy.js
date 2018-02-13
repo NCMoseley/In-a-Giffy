@@ -5,9 +5,7 @@ export const GiphyUrls = new Mongo.Collection("giphyUrls"); // create a collecti
 
 if (Meteor.isServer) {
   Meteor.publish("giphyUrls", function() {
-    return GiphyUrls.find()
-      .sort({ url: -1 })
-      .limit(1);
+    return GiphyUrls.find();
   });
 }
 

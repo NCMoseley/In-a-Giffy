@@ -8,8 +8,8 @@ import { GameLogic, GameStatuses } from "../game/GameLogic.js";
 export const Games = new Mongo.Collection("games");
 
 if (Meteor.isServer) {
-  Meteor.publish("Games", function() {
-    return Meteor.Games.find();
+  Meteor.publish("games", function() {
+    return Games.find();
   });
 }
 
