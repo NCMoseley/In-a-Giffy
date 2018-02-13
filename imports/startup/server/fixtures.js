@@ -1,7 +1,9 @@
 import { Meteor } from "meteor/meteor";
 import { accounts } from "meteor/accounts-base";
-import { submissions } from "../../api/submissions";
-import { Games } from "../../api/game";
+
+// import collections
+import { Games } from "/imports/api/game";
+import { Submissions } from "/imports/api/submissions";
 
 Meteor.startup(() => {
   if (Meteor.users.find().count() < 2) {

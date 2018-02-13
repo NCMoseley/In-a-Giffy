@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
-import Giphy from "../../components/Giphy"; // import Giphy front-end component
-import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
-import { Games } from "/imports/api/game";
-
-// import local style resources
 import "./styles.css";
 
 // import Material UI components
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
-// import app components
+// import collections
+import { Games } from "/imports/api/game";
+import Giphy from "../../components/Giphy"; // import Giphy front-end component
+import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collection
+
+// import components
+import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
+import CaptionField from "/imports/ui/components/CaptionField";
+import DataItem from "/imports/ui/components/DataItem/index";
+import FrontPage from "/imports/ui/components/FrontPage";
 import StartButton from "/imports/ui/components/StartButton";
 import { Submissions } from "/imports/api/submissions";
-import CaptionField from "/imports/ui/components/CaptionField";
-import FrontPage from "/imports/ui/components/FrontPage";
-import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
-import DataItem from "/imports/ui/components/DataItem/index";
 
 class App extends Component {
   constructor() {
