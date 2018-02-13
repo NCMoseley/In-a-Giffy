@@ -19,8 +19,12 @@ import StartButton from "/imports/ui/components/StartButton";
 class SubmitPage extends Component {
   constructor() {
     super();
+    this.state = {
+      start: false
+    };
 
     this.addData = this.addData.bind(this);
+    this.gameStart = this.gameStart.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
     this.getImage();
   }
@@ -30,21 +34,24 @@ class SubmitPage extends Component {
     Meteor.call("data.togglewinner", item);
   }
 
-  // add a new to do to the list
-  addData(event) {
-    event.preventDefault();
-
-    Meteor.call("submissions.addData", this.dataInput.value);
+  gameStart() {
+    this.setState({
+      start: !this.state.start
+    });
   }
 
-  // addData(event) {
-  //   event.preventDefault();
-  //   console.log(this.dataInput.value);
-  //   if (this.dataInput.value) {
-  //     Meteor.call("submissions.addData", this.dataInput.value);
-  //     this.dataInput.value = "";
-  //   }
-  // }
+  // add a new to do to the list
+
+  addData(event) {
+    event.preventDefault();
+    setTimeout(() => {
+      console.log(this.dataInput.value);
+      if (this.dataInput.value) {
+        Meteor.call("submissions.addData", this.dataInput.value);
+        this.dataInput.value = "";
+      }
+    }, 8000);
+  }
 
   // remove a to do from the list
   removeData(item) {
@@ -71,7 +78,7 @@ class SubmitPage extends Component {
   }
 
   render() {
-    console.log(this.props.captions[0]);
+    // console.log(this.props.captions[0]);
     return (
       <div>
         <ul>
@@ -91,8 +98,11 @@ class SubmitPage extends Component {
         <div className="add-data">
           <CaptionField
             handleSubmit={this.addData}
-            input={ref => (this.dataInput = ref)} //?
+            input={ref => (this.dataInput = ref)}
+            start={this.gameStart}
+            //?
           />
+          {this.state.start && <h1> Game On! </h1>}
         </div>
 
         <StartButton handleClick={() => this.getImage()} />
