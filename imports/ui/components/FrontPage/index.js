@@ -18,8 +18,12 @@ class FrontPage extends Component {
     super();
   }
 
-  onClickCreateNewGame() {
-    Meteor.call("gameRounds.Create");
+  createNewGame() {
+    Meteor.call("Games.play");
+  }
+
+  joinGame() {
+    Meteor.call("Games.play");
   }
 
   render() {
@@ -27,9 +31,10 @@ class FrontPage extends Component {
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
-        {/* <button onClick={onClickCreateNewGame()}>Create New Game</button> onClickCreateNewGame is not defined*/}
-        <button>Create New Game</button>
-        <button>Join Game</button>
+        {/* <button onClick={createNewGame()}>Create New Game</button> */}
+        <button>Place Holder Create</button>
+        {/* <button onClick={joinGame()}>Join Game</button> */}
+        <button>Place Holder Join</button>
       </div>
     );
   }
