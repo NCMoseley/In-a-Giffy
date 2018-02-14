@@ -108,13 +108,15 @@ class SubmitPage extends Component {
         this.props.users[0].users.length === this.props.captions.length ? (
           <ul>
             {this.props.captions.length > 0 ? (
-              this.props.captions.map((caption, index) => (
-                <Caption
-                  item={caption}
-                  key={index}
-                  toggleWinner={this.toggleWinner.bind(this, caption)}
-                />
-              ))
+              this.props.captions
+                .filter(cap => cap.game === this.props.match.params.id)
+                .map((caption, index) => (
+                  <Caption
+                    item={caption}
+                    key={index}
+                    toggleWinner={this.toggleWinner.bind(this, caption)}
+                  />
+                ))
             ) : (
               <p> No caption to display </p>
             )}
