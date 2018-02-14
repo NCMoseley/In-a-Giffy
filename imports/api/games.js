@@ -23,7 +23,7 @@ Meteor.methods({
     Games.insert({
       createdAt: new Date(),
       users: [this.userId],
-      host: this.userId // The game creator is judge for round one.
+      host: { _id: this.userId, username: Meteor.user().username } // The game creator is judge for round one.
     });
   },
 

@@ -81,8 +81,8 @@ Accounts.onCreateUser((options, user) => {
 Meteor.startup(() => {
   if (Meteor.users.find().count() < 2) {
     let userId = Accounts.createUser({
-      username: "Englebert Humperdink",
-      email: "e@easy.com",
+      username: "Fnglebert Humperdink",
+      email: "f@easy.com",
       password: "eee"
     });
 
