@@ -29,10 +29,8 @@ class SubmitPage extends Component {
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
     this.hideForm = this.hideForm.bind(this);
-
     this.removewinnerd = this.removewinnerd.bind(this);
     this.removeCaptions = this.removeCaptions.bind(this);
-
     this.getImage = this.getImage.bind(this);
   }
 
@@ -44,12 +42,6 @@ class SubmitPage extends Component {
   //appending game on text to notify players game is on
   gameStart() {
     Meteor.call("games.start", this.props.game._id);
-  }
-
-  hideForm() {
-    this.setState({
-      hidden: !this.state.hidden
-    });
   }
 
   // adding a new caption
