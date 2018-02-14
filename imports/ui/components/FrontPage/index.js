@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
+import { BrowserRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // import Material UI components
@@ -32,11 +33,13 @@ class FrontPage extends Component {
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
-        <button onClick={this.createNewGame}>Create New Game</button>
+        <Link to="/gamelisttest">
+          <button onClick={this.createNewGame}>Create New Game</button>
+        </Link>
 
-        <a href="/gamelisttest">
+        <Link to="/gamelisttest">
           <button>Join Game</button>
-        </a>
+        </Link>
       </div>
     );
   }
