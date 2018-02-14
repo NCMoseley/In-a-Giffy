@@ -29,11 +29,11 @@ class SubmitPage extends Component {
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
     this.hideForm = this.hideForm.bind(this);
-    // this.gameStart();
-    // this.toggleWinner = this.toggleWinner.bind(this);
+
     this.removewinnerd = this.removewinnerd.bind(this);
     this.removeCaptions = this.removeCaptions.bind(this);
-    this.getImage();
+
+    this.getImage = this.getImage.bind(this);
   }
 
   // toggle the checkbox to denote completion status
@@ -153,7 +153,7 @@ class SubmitPage extends Component {
 
         {judge === this.props.currentUserId ? (
           <div>
-            <StartButton handleClick={() => this.getImage()} />
+            <StartButton handleClick={this.getImage} />
             <StartRoundButton handleClick={this.gameStart} />
           </div>
         ) : null}
