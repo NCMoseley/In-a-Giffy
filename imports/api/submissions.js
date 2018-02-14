@@ -18,7 +18,7 @@ Meteor.methods({
         "You must be logged in to create a data"
       );
     }
-    submissions.insert({
+    Submissions.insert({
       title: inputValue,
       winner: false,
       owner: this.userId
