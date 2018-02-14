@@ -5,7 +5,8 @@ export const Submissions = new Mongo.Collection("submissions");
 
 if (Meteor.isServer) {
   Meteor.publish("submissions", function todosPublication() {
-    return Submissions.find({ owner: this.userId });
+    return Submissions.find({});
+    // use { owner: this.userId } to return just the caption submitted by htis user
   });
 }
 
