@@ -38,14 +38,8 @@ Meteor.methods({
     });
   },
   // Removing a data
-  "data.removeData"(item) {
-    if (item.owner !== this.userId) {
-      throw new Meteor.Error(
-        "data.removeData.not-authorized",
-        "You connot remove other users data"
-      );
-    }
-    Submissions.remove(item._id);
+  "submissions.removeData"() {
+    Submissions.remove({});
   },
   // Removing all winnerd data
   "data.removewinnerd"(owner) {

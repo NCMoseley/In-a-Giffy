@@ -16,17 +16,19 @@ import DataItem from "/imports/ui/components/DataItem";
 import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
 import StartButton from "/imports/ui/components/StartButton";
 import StartRoundButton from "/imports/ui/components/StartRoundButton";
+import Remove from "/imports/ui/components/Remove";
 
 class SubmitPage extends Component {
   constructor() {
     super();
     this.state = {
-      start: false
+      start: true
     };
 
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
+    this.removeCaptions = this.removeCaptions.bind(this);
     this.getImage();
   }
 
@@ -46,23 +48,17 @@ class SubmitPage extends Component {
 
   addData(event) {
     event.preventDefault();
-    setTimeout(() => {
-      console.log(this.dataInput.value);
-      if (this.dataInput.value) {
-        Meteor.call("submissions.addData", this.dataInput.value);
-        this.dataInput.value = "";
-      }
-      this.setState({
-        start: false
-      });
-    }, 10000);
+
+    console.log(this.dataInput.value);
+    if (this.dataInput.value) {
+      Meteor.call("submissions.addData", this.dataInput.value);
+      this.dataInput.value = "";
+    }
   }
 
-  getJudge() {}
-
   // remove a to do from the list
-  removeData(item) {
-    Meteor.call("data.removeData", item);
+  removeCaptions() {
+    Meteor.call("submissions.removeData");
   }
 
   // remove all winnerd to dos from the list
@@ -85,7 +81,15 @@ class SubmitPage extends Component {
   }
 
   render() {
-    // console.log(this.props.captions[0]);
+    console.log(this.props.captions);
+    console.log(this.props.users);
+
+    if (this.props.users[0]) {
+      if (this.props.users[0].users.length === this.props.captions.length) {
+        console.log("it worked");
+      }
+    }
+
     let judge;
     if (this.props.users[0]) {
       judge = this.props.users[0].users[0];
@@ -95,15 +99,18 @@ class SubmitPage extends Component {
     this.state.start && console.log("hello world");
     return (
       <div>
-        <ul>
-          {this.props.captions.length > 0 ? (
-            this.props.captions.map((caption, index) => (
-              <Caption item={caption} key={index} />
-            ))
-          ) : (
-            <p> No caption to display </p>
-          )}
-        </ul>
+        {this.props.users[0] &&
+        this.props.users[0].users.length === this.props.captions.length ? (
+          <ul>
+            {this.props.captions.length > 0 ? (
+              this.props.captions.map((caption, index) => (
+                <Caption item={caption} key={index} />
+              ))
+            ) : (
+              <p> No caption to display </p>
+            )}
+          </ul>
+        ) : null}
         {this.props.currentUserId === judge ||
         (this.props.currentUserId !== judge && this.state.start) ? (
           <Giphy
@@ -117,8 +124,6 @@ class SubmitPage extends Component {
               handleSubmit={this.addData}
               input={ref => (this.dataInput = ref)}
             />
-
-            {this.state.start && <h1> Game On! </h1>}
           </div>
         ) : null}
 
@@ -128,6 +133,7 @@ class SubmitPage extends Component {
             <StartRoundButton handleClick={this.gameStart} />
           </div>
         ) : null}
+        <Remove handleClick={this.removeCaptions} />
       </div>
     );
   }
