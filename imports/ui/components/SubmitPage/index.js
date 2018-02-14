@@ -22,8 +22,13 @@ class SubmitPage extends Component {
   constructor() {
     super();
 
+    this.state = {
+      hidden: false
+    };
+
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
+    this.hideForm = this.hideForm.bind(this);
     // this.gameStart();
     // this.toggleWinner = this.toggleWinner.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
@@ -41,6 +46,12 @@ class SubmitPage extends Component {
     Meteor.call("games.start", this.props.game._id);
   }
 
+  hideForm() {
+    this.setState({
+      hidden: !this.state.hidden
+    });
+  }
+
   // adding a new caption
 
   addData(event) {
@@ -55,6 +66,9 @@ class SubmitPage extends Component {
       );
       this.dataInput.value = "";
     }
+    this.setState({
+      hidden: !this.state.hidden
+    });
   }
 
   // remove a to do from the list
@@ -132,6 +146,7 @@ class SubmitPage extends Component {
             <CaptionField
               handleSubmit={this.addData}
               input={ref => (this.dataInput = ref)}
+              hidden={this.state.hidden}
             />
           </div>
         ) : null}
