@@ -22,6 +22,7 @@ Meteor.methods({
     }
     Games.insert({
       createdAt: new Date(),
+      started: false,
       users: [this.userId],
       host: { _id: this.userId, username: Meteor.user().username } // The game creator is judge for round one.
     });
@@ -44,6 +45,13 @@ Meteor.methods({
 
     Games.update(game._id, {
       $set: { users: players }
+    });
+  },
+
+  "games.start"(gameId) {
+    console.log("does this work!!??", gameId);
+    Games.update(gameId, {
+      $set: { started: true }
     });
   }
 

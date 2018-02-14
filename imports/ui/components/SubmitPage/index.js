@@ -21,12 +21,10 @@ import Remove from "/imports/ui/components/Remove";
 class SubmitPage extends Component {
   constructor() {
     super();
-    this.state = {
-      start: true
-    };
 
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
+    // this.gameStart();
     // this.toggleWinner = this.toggleWinner.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
     this.removeCaptions = this.removeCaptions.bind(this);
@@ -40,9 +38,7 @@ class SubmitPage extends Component {
 
   //appending game on text to notify players game is on
   gameStart() {
-    this.setState({
-      start: !this.state.start
-    });
+    Meteor.call("games.start", this.props.game._id);
   }
 
   // adding a new caption
@@ -55,7 +51,7 @@ class SubmitPage extends Component {
       Meteor.call(
         "submissions.addData",
         this.dataInput.value,
-        this.props.users[0]._id
+        this.props.game._id
       );
       this.dataInput.value = "";
     }
@@ -87,25 +83,25 @@ class SubmitPage extends Component {
 
   render() {
     console.log(this.props.captions);
-    console.log(this.props.users);
+    console.log(this.props.game);
 
-    if (this.props.users[0]) {
-      if (this.props.users[0].users.length === this.props.captions.length) {
+    if (this.props.game) {
+      if (this.props.game.users.length === this.props.captions.length) {
         console.log("it worked");
       }
     }
 
     let judge;
-    if (this.props.users[0]) {
-      judge = this.props.users[0].users[0];
+    if (this.props.game) {
+      judge = this.props.game.users[0];
     }
     // console.log(judge);
     // console.log(this.props.currentUserId);
-    this.state.start && console.log("hello world");
+
     return (
       <div>
-        {this.props.users[0] &&
-        this.props.users[0].users.length === this.props.captions.length ? (
+        {this.props.game &&
+        this.props.game.users.length === this.props.captions.length ? (
           <ul>
             {this.props.captions.length > 0 ? (
               this.props.captions
@@ -123,7 +119,9 @@ class SubmitPage extends Component {
           </ul>
         ) : null}
         {this.props.currentUserId === judge ||
-        (this.props.currentUserId !== judge && this.state.start) ? (
+        (this.props.currentUserId !== judge && this.props.game
+          ? this.props.game.started
+          : null) ? (
           <Giphy
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
@@ -160,18 +158,18 @@ SubmitPage.propTypes = {
   currentUserId: PropTypes.string
 };
 
-export default withTracker(() => {
+export default withTracker(({ match }) => {
   const handle = Meteor.subscribe("giphyUrls");
   const handleSubmissions = Meteor.subscribe("submissions");
   const handleGame = Meteor.subscribe("games");
   const url = GiphyUrls.findOne();
   const captions = Submissions.find({}).fetch();
-  const users = Games.find({}).fetch();
+  const game = Games.findOne({ _id: match.params.id });
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
     currentGiphyUrl: url,
     captions: captions,
-    users: users
+    game: game
   };
 })(SubmitPage);
