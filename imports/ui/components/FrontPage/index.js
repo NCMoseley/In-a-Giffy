@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // import Material UI components
@@ -25,7 +25,14 @@ class FrontPage extends Component {
   }
 
   createNewGame() {
-    Meteor.call("games.create");
+    Meteor.call("games.create", (err, gameId) => {
+      if (err) {
+        console.log("Create game no work?");
+      } else {
+        console.log(gameId);
+        this.props.history.push(`submitpagetest/${gameId}`);
+      }
+    });
   }
 
   render() {
@@ -33,9 +40,7 @@ class FrontPage extends Component {
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
-        <Link to="/gamelisttest">
-          <button onClick={this.createNewGame}>Create New Game</button>
-        </Link>
+        <button onClick={this.createNewGame.bind(this)}>Create New Game</button>
 
         <Link to="/gamelisttest">
           <button>Join Game</button>
@@ -45,10 +50,12 @@ class FrontPage extends Component {
   }
 } // End class FrontPage
 
-export default withTracker(() => {
-  const games = Games.find({}).fetch();
-  return {
-    // not sure if we need this, but I gotta put something cause it won't let you return null
-    currentGame: null
-  };
-})(FrontPage);
+export default withRouter(
+  withTracker(() => {
+    // const games = Games.find({}).fetch();
+    return {
+      // not sure if we need this, but I gotta put something cause it won't let you return null
+      currentGame: null
+    };
+  })(FrontPage)
+);
