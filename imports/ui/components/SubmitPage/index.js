@@ -107,14 +107,15 @@ class SubmitPage extends Component {
         <Giphy
           url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
         />
-
         <div className="add-data">
-          <CaptionField
-            handleSubmit={this.addData}
-            input={ref => (this.dataInput = ref)}
-            start={this.gameStart}
-            //?
-          />
+          {this.props.currentUserId !== judge ? (
+            <CaptionField
+              handleSubmit={this.addData}
+              input={ref => (this.dataInput = ref)}
+              start={this.gameStart}
+              //?
+            />
+          ) : null}
           {this.state.start && <h1> Game On! </h1>}
         </div>
 
