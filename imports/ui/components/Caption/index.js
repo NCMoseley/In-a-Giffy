@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Caption = ({ item }) => (
+const Caption = ({ item, toggleWinner }) => (
   <li>
     {item.title}
-    {/* <input
+    <input
+      type="checkbox"
       id={item._id}
-      // checked={item.complete}
-      // onChange={toggleComplete}
+      checked={item.winner}
+      onChange={toggleWinner}
     />
-    <label htmlFor={item._id} /> */}
   </li>
 );
 

@@ -27,14 +27,15 @@ class SubmitPage extends Component {
 
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
+    // this.toggleWinner = this.toggleWinner.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
     this.removeCaptions = this.removeCaptions.bind(this);
     this.getImage();
   }
 
   // toggle the checkbox to denote completion status
-  togglewinner(item) {
-    Meteor.call("data.togglewinner", item);
+  toggleWinner(item) {
+    Meteor.call("submissions.toggleWinner", item);
   }
 
   //appending game on text to notify players game is on
@@ -104,7 +105,11 @@ class SubmitPage extends Component {
           <ul>
             {this.props.captions.length > 0 ? (
               this.props.captions.map((caption, index) => (
-                <Caption item={caption} key={index} />
+                <Caption
+                  item={caption}
+                  key={index}
+                  toggleWinner={this.toggleWinner.bind(this, caption)}
+                />
               ))
             ) : (
               <p> No caption to display </p>

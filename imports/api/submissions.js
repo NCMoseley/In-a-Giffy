@@ -18,18 +18,18 @@ Meteor.methods({
         "You must be logged in to create a data"
       );
     }
-    Submissions.insert({
+    submissions.insert({
       title: inputValue,
       winner: false,
       owner: this.userId
     });
   },
 
-  // Toggling winner
-  "data.togglewinner"(item) {
+  // Select winner
+  "submissions.toggleWinner"(item) {
     if (item.owner !== this.userId) {
       throw new Meteor.Error(
-        "data.togglewinner.not-authorized",
+        "data.toggleWinner.not-authorized",
         "You connot update other users data"
       );
     }
