@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   // Adding
-  "submissions.addData"(inputValue) {
+  "submissions.addData"(inputValue, gameId) {
     if (!this.userId) {
       throw new Meteor.Error(
         "submissions.addData.not-authorized",
@@ -20,6 +20,7 @@ Meteor.methods({
       );
     }
     Submissions.insert({
+      game: gameId,
       title: inputValue,
       winner: false,
       owner: this.userId

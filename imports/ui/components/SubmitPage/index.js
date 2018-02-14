@@ -52,7 +52,11 @@ class SubmitPage extends Component {
 
     console.log(this.dataInput.value);
     if (this.dataInput.value) {
-      Meteor.call("submissions.addData", this.dataInput.value);
+      Meteor.call(
+        "submissions.addData",
+        this.dataInput.value,
+        this.props.users[0]._id
+      );
       this.dataInput.value = "";
     }
   }
