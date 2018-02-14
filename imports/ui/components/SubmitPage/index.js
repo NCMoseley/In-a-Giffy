@@ -28,7 +28,6 @@ class SubmitPage extends Component {
 
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
-    this.hideForm = this.hideForm.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
     this.removeCaptions = this.removeCaptions.bind(this);
     this.getImage = this.getImage.bind(this);
