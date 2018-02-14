@@ -15,6 +15,7 @@ import CaptionField from "/imports/ui/components/CaptionField";
 import DataItem from "/imports/ui/components/DataItem";
 import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
 import StartButton from "/imports/ui/components/StartButton";
+import StartRoundButton from "/imports/ui/components/StartRoundButton";
 
 class SubmitPage extends Component {
   constructor() {
@@ -91,7 +92,7 @@ class SubmitPage extends Component {
     }
     // console.log(judge);
     // console.log(this.props.currentUserId);
-
+    this.state.start && console.log("hello world");
     return (
       <div>
         <ul>
@@ -103,18 +104,18 @@ class SubmitPage extends Component {
             <p> No caption to display </p>
           )}
         </ul>
-
-        <Giphy
-          url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
-        />
+        {this.props.currentUserId === judge ||
+        (this.props.currentUserId !== judge && this.state.start) ? (
+          <Giphy
+            url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
+          />
+        ) : null}
 
         {this.props.currentUserId !== judge ? (
           <div className="add-data">
             <CaptionField
               handleSubmit={this.addData}
               input={ref => (this.dataInput = ref)}
-              start={this.gameStart}
-              //?
             />
 
             {this.state.start && <h1> Game On! </h1>}
@@ -122,7 +123,10 @@ class SubmitPage extends Component {
         ) : null}
 
         {judge === this.props.currentUserId ? (
-          <StartButton handleClick={() => this.getImage()} />
+          <div>
+            <StartButton handleClick={() => this.getImage()} />
+            <StartRoundButton handleClick={this.gameStart} />
+          </div>
         ) : null}
       </div>
     );
