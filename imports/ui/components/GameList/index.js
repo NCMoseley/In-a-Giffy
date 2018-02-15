@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // import collections
@@ -31,9 +31,8 @@ class GameList extends Component {
                     <button
                       game={game._id}
                       onClick={this.joinGame.bind(this, game)}
-                    >{`Game ${game._id} hosted by ${
-                      game.host.username
-                    }`}</button>
+                    >{`Game ${game._id} hosted by ${game.host
+                      .username}`}</button>
                   </Link>
                 </li>
               ))
@@ -47,10 +46,12 @@ class GameList extends Component {
   }
 }
 
-export default withTracker(() => {
-  const gameList = Meteor.subscribe("games");
-  const games = Games.find({}).fetch();
-  return {
-    games: games
-  };
-})(GameList);
+export default withRouter(
+  withTracker(() => {
+    const gameList = Meteor.subscribe("games");
+    const games = Games.find({}).fetch();
+    return {
+      games: games
+    };
+  })(GameList)
+);

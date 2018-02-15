@@ -85,7 +85,7 @@ class SubmitPage extends Component {
   }
 
   getImage() {
-    Meteor.call("giphyUrls.getImage");
+    Meteor.call("giphyUrls.getImage", this.props.game._id);
   }
 
   componentDidMount() {
@@ -177,8 +177,12 @@ export default withTracker(({ match }) => {
   const handle = Meteor.subscribe("giphyUrls");
   const handleSubmissions = Meteor.subscribe("submissions");
   const handleGame = Meteor.subscribe("games");
+<<<<<<< HEAD
   const handleWinners = Meteor.subscribe("winners");
   const url = GiphyUrls.findOne();
+=======
+  const url = GiphyUrls.findOne({ game: match.params.id });
+>>>>>>> 06b3e2d1692bc20d985b45b1f1c529b857b392f8
   const captions = Submissions.find({}).fetch();
   const game = Games.findOne({ _id: match.params.id });
   const winners = Submissions.find({ winner: true }).fetch();
