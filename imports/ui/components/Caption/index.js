@@ -5,12 +5,10 @@ import "./styles.css";
 const Caption = ({ item, toggleWinner }) => (
   <li className="caption">
     {item.title}
-    <input
-      type="checkbox"
-      id={item._id}
-      checked={item.winner}
-      onChange={toggleWinner}
-    />
+    {/* <input id={item._id} checked={item.winner} onChange={toggleWinner} /> */}
+    <button onClick={toggleWinner} id={item._id}>
+      Winner
+    </button>
   </li>
 );
 
