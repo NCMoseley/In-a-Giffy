@@ -1,6 +1,3 @@
-/* To-Do List */
-/*-----------------------------------------*/
-
 .logo {
   height: 300px;
   width: 300px;
@@ -31,10 +28,9 @@
 }
 
 .content-wrapper li {
-  border-bottom: 1px solid #dbdbdb;
   display: flex;
   font-size: 1.25rem;
-  padding: 1rem;
+  padding-bottom: 1rem;
   align-items: flex-start;
 }
 
@@ -86,7 +82,8 @@
 }
 
 .add-data {
-  background-color: #c2c2c2;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   padding: 1rem;
   width: 60vw;
 }

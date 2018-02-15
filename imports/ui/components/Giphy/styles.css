@@ -1,6 +1,7 @@
 .giphy-image-container {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
 }

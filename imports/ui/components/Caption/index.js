@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./styles.css";
 
 const Caption = ({ item, toggleWinner }) => (
-  <li>
+  <li className="caption">
     {item.title}
     <input
       type="checkbox"

@@ -147,6 +147,7 @@ table {
 
 * {
   box-sizing: border-box;
+  color: white;
 }
 
 *:focus {

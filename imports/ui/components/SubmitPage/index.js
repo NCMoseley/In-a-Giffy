@@ -104,7 +104,7 @@ class SubmitPage extends Component {
     // console.log(this.props.currentUserId);
 
     return (
-      <div>
+      <div className="submit-page-wrapper">
         {this.props.game &&
         this.props.game.users.length === this.props.captions.length ? (
           <ul>
