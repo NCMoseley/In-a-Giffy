@@ -90,6 +90,16 @@ class SubmitPage extends Component {
       this.props.game._id,
       this.props.winners[0] ? this.props.winners[0].owner : null
     );
+
+    // if (this.state.judge > this.props.game.users.length - 1) {
+    //   this.setState({
+    //     judge: this.state.judge + 1
+    //   });
+    // } else {
+    //   this.setState({
+    //     judge: 0
+    //   });
+    // }
   }
 
   // remove a to do from the list
@@ -133,13 +143,13 @@ class SubmitPage extends Component {
     if (this.props.game) {
       judge = this.props.game.users[0].id;
     }
-    // console.log(judge);
+    console.log(judge);
     // console.log(this.props.currentUserId);
 
     return (
       <div className="submit-page-wrapper">
         {this.props.game &&
-        this.props.game.users.length === this.props.captions.length ? (
+        this.props.game.users.length >= this.props.captions.length - 1 ? (
           <ul>
             {this.props.captions.length > 0 ? (
               this.props.captions
