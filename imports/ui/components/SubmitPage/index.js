@@ -90,16 +90,10 @@ class SubmitPage extends Component {
       this.props.game._id,
       this.props.winners[0] ? this.props.winners[0].owner : null
     );
-
-    // if (this.state.judge > this.props.game.users.length - 1) {
-    //   this.setState({
-    //     judge: this.state.judge + 1
-    //   });
-    // } else {
-    //   this.setState({
-    //     judge: 0
-    //   });
-    // }
+    Meteor.call("submissions.removeData");
+    this.setState({
+      revealButton: !this.state.revealButton
+    });
   }
 
   // remove a to do from the list
