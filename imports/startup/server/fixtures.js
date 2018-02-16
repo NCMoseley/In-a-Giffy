@@ -86,12 +86,12 @@ Meteor.startup(() => {
       password: "eee"
     });
 
-    if (Submissions.find().count() === 0) {
-      Submissions.insert({
-        title: "Take 5 deep breaths",
-        winner: false,
-        owner: userId
-      });
-    }
+    // if (Submissions.find().count() === 0) {
+    //   Submissions.insert({
+    //     title: "Take 5 deep breaths",
+    //     winner: false,
+    //     owner: userId
+    //   });
+    // }
   }
 });

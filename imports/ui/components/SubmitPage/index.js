@@ -112,16 +112,16 @@ class SubmitPage extends Component {
     Meteor.call("giphyUrls.getImage", this.props.game._id);
   }
 
-  componentDidMount() {
-    this.props.currentUser && this.dataInput.focus();
-  }
+  // componentDidMount() {
+  //   this.props.currentUser && this.dataInput.focus();
+  // }
 
   render() {
     // console.log(this.props.winners[0] ? this.props.winners[0].owner : null);
 
     // console.log(this.props.game ? this.props.game.users : null);
 
-    console.log(this.props.winners);
+    // console.log(this.props.winners);
 
     if (this.props.game) {
       if (this.props.game.users.length === this.props.captions.length) {

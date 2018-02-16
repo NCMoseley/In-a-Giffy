@@ -1,16 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withTracker } from "meteor/react-meteor-data";
+import { Games } from "/imports/api/games";
 import "./styles.css";
 
-const Caption = ({ item, pickWinner }) => (
-  <li className="caption">
-    {item.title}
-    {/* <input id={item._id} checked={item.winner} onChange={toggleWinner} /> */}
-    <button onClick={pickWinner} id={item._id}>
-      Winner
-    </button>
-  </li>
-);
+class Caption extends React.Component {
+  constructor() {
+    super();
+  }
+  render() {
+    let judge;
+    if (this.props.users) {
+      judge = this.props.users.users[0].id;
+    }
+
+    console.log(this.props.users ? judge : null);
+
+    return (
+      <li className="caption">
+        {this.props.item.title}
+
+        {this.props.currentUserId === judge ? (
+          <button onClick={this.props.pickWinner} id={this.props.item._id}>
+            Winner
+          </button>
+        ) : null}
+      </li>
+    );
+  }
+}
 
 Caption.propTypes = {
   item: PropTypes.shape({
@@ -19,8 +37,14 @@ Caption.propTypes = {
     winner: PropTypes.bool.isRequired,
     owner: PropTypes.string.isRequired
   })
-  // toggleComplete: PropTypes.func.isRequired,
-  // removeToDo: PropTypes.func.isRequired
 };
 
-export default Caption;
+export default withTracker(({ item }) => {
+  const game = Meteor.subscribe("games");
+  const users = Games.findOne({ _id: item.game });
+
+  return {
+    users: users,
+    currentUserId: Meteor.userId()
+  };
+})(Caption);
