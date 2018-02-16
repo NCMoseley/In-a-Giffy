@@ -33,6 +33,7 @@ class SubmitPage extends Component {
     this.removeCaptions = this.removeCaptions.bind(this);
     this.getImage = this.getImage.bind(this);
     this.getWinners = this.getWinners.bind(this);
+    this.increaseScore = this.increaseScore.bind(this);
   }
 
   // toggle the checkbox to denote completion status
@@ -68,6 +69,14 @@ class SubmitPage extends Component {
     Meteor.call("winners.getWinners", this.props.winners);
   }
 
+  increaseScore() {
+    Meteor.call(
+      "games.score",
+      this.props.game._id,
+      this.props.winners[0] ? this.props.winners[0].owner : null
+    );
+  }
+
   // remove a to do from the list
   removeCaptions() {
     Meteor.call("submissions.removeData");
@@ -94,8 +103,22 @@ class SubmitPage extends Component {
 
   render() {
     // console.log(this.props.captions);
-    console.log(this.props.game);
-    // console.log(this.props.winners);
+
+    console.log(this.props.winners[0] ? this.props.winners[0].owner : null);
+
+    console.log(this.props.game ? this.props.game.users : null);
+
+    // let choice = this.props.winners[0] ? this.props.winners[0].owner : null;
+
+    // let x = this.props.game
+    //   ? this.props.game.users.forEach(user => {
+    //       if (user.id === choice) {
+    //         console.log(user);
+    //       }
+    //     })
+    //   : null;
+
+    // this.props.winners ? console.log(choice) : null;
     // this.props.theWinners ? console.log(this.props.theWinners) : null;
 
     if (this.props.game) {
@@ -106,7 +129,7 @@ class SubmitPage extends Component {
 
     let judge;
     if (this.props.game) {
-      judge = this.props.game.users[0];
+      judge = this.props.game.users[0].id;
     }
     // console.log(judge);
     // console.log(this.props.currentUserId);
@@ -158,6 +181,7 @@ class SubmitPage extends Component {
           </div>
         ) : null}
         <Remove handleClick={this.removeCaptions} />
+        <button onClick={this.increaseScore}>Increase</button>
       </div>
     );
   }
