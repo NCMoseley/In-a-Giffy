@@ -36,6 +36,7 @@ class SubmitPage extends Component {
     this.getWinners = this.getWinners.bind(this);
     this.increaseScore = this.increaseScore.bind(this);
     this.removeWinner = this.removeWinner.bind(this);
+    this.toggleJudge = this.toggleJudge.bind(this);
   }
 
   // toggle the checkbox to denote completion status
@@ -59,6 +60,10 @@ class SubmitPage extends Component {
   //appending game on text to notify players game is on
   gameStart() {
     Meteor.call("games.start", this.props.game._id);
+  }
+
+  toggleJudge() {
+    Meteor.call("games.toggleJudge", this.props.game);
   }
 
   // adding a new caption
@@ -189,6 +194,7 @@ class SubmitPage extends Component {
             handleMistake={this.removeWinner}
           />
         ) : null}
+        <button onClick={this.toggleJudge}>Test judge toggle</button>
       </div>
     );
   }

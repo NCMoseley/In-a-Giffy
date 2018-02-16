@@ -21,6 +21,7 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
+
     const newGame = Games.insert({
       createdAt: new Date(),
       started: false,
@@ -72,5 +73,17 @@ Meteor.methods({
       { _id: game, "users.id": user },
       { $inc: { "users.$.score": 1 } }
     );
+  },
+
+  "games.toggleJudge"(game) {
+    const players = game.users;
+    const currentJudge = players.shift();
+    players.push(currentJudge);
+    console.log(players);
+    Games.update(game._id, {
+      $set: {
+        users: players
+      }
+    });
   }
 });
