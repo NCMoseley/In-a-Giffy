@@ -37,6 +37,7 @@ class FrontPage extends Component {
         console.log("Create game no work?");
       } else {
         this.props.history.push(`submitpagetest/${gameId}`);
+        Meteor.call("giphyUrls.getImage", gameId);
       }
     });
   }
