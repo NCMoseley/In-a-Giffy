@@ -31,8 +31,8 @@ class GameList extends Component {
                     <button
                       game={game._id}
                       onClick={this.joinGame.bind(this, game)}
-                    >{`Game ${game._id} hosted by ${game.host
-                      .username}`}</button>
+                    >{`"${game.gameName}"
+										hosted by ${game.host.username}`}</button>
                   </Link>
                 </li>
               ))
