@@ -24,7 +24,13 @@ Meteor.methods({
     const newGame = Games.insert({
       createdAt: new Date(),
       started: false,
-      users: [this.userId],
+      users: [
+        {
+          id: this.userId,
+          score: 0
+        }
+      ],
+
       host: { _id: this.userId, username: Meteor.user().username }, // The game creator is judge for round one.
       gameName: name
     });
@@ -43,24 +49,29 @@ Meteor.methods({
     if (players.includes(this.userId)) {
       console.log("player is already in the game");
     } else {
-      players.push(this.userId);
+      players.push({ id: this.userId, score: 0 });
     }
 
     Games.update(game._id, {
-      $set: { users: players }
+      $set: {
+        users: players
+      }
     });
   },
 
   "games.start"(gameId) {
     console.log("does this work!!??", gameId);
     Games.update(gameId, {
-      $set: { started: true }
+      $set: {
+        started: true
+      }
     });
-  }
+  },
 
-  // if (Meteor.isServer) {
-  //   Meteor.publish("gameRoundUpdate", function() {
-  //     return gameRounds.find({ users: this.userId() });
-  //   });
-  // }
+  "games.score"(game, user) {
+    Games.update(
+      { _id: game, "users.id": user },
+      { $inc: { "users.$.score": 1 } }
+    );
+  }
 });
