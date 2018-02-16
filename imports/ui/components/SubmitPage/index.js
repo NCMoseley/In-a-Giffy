@@ -18,13 +18,14 @@ import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end comp
 import StartButton from "/imports/ui/components/StartButton";
 import StartRoundButton from "/imports/ui/components/StartRoundButton";
 import Remove from "/imports/ui/components/Remove";
+import EndRoundButton from "/imports/ui/components/EndRoundButton";
 
 class SubmitPage extends Component {
   constructor() {
     super();
-
     this.state = {
-      hidden: false
+      hidden: false,
+      revealButton: false
     };
 
     this.addData = this.addData.bind(this);
@@ -34,11 +35,25 @@ class SubmitPage extends Component {
     this.getImage = this.getImage.bind(this);
     this.getWinners = this.getWinners.bind(this);
     this.increaseScore = this.increaseScore.bind(this);
+    this.removeWinner = this.removeWinner.bind(this);
   }
 
   // toggle the checkbox to denote completion status
-  toggleWinner(item) {
-    Meteor.call("submissions.toggleWinner", item);
+  pickWinner(item) {
+    Meteor.call("submissions.pickWinner", item);
+    this.setState({
+      revealButton: !this.state.revealButton
+    });
+  }
+
+  removeWinner() {
+    Meteor.call(
+      "submissions.removeWinner",
+      this.props.winners ? this.props.winners[0] : null
+    );
+    this.setState({
+      revealButton: !this.state.revealButton
+    });
   }
 
   //appending game on text to notify players game is on
@@ -102,24 +117,11 @@ class SubmitPage extends Component {
   }
 
   render() {
-    // console.log(this.props.captions);
+    // console.log(this.props.winners[0] ? this.props.winners[0].owner : null);
 
-    console.log(this.props.winners[0] ? this.props.winners[0].owner : null);
+    // console.log(this.props.game ? this.props.game.users : null);
 
-    console.log(this.props.game ? this.props.game.users : null);
-
-    // let choice = this.props.winners[0] ? this.props.winners[0].owner : null;
-
-    // let x = this.props.game
-    //   ? this.props.game.users.forEach(user => {
-    //       if (user.id === choice) {
-    //         console.log(user);
-    //       }
-    //     })
-    //   : null;
-
-    // this.props.winners ? console.log(choice) : null;
-    // this.props.theWinners ? console.log(this.props.theWinners) : null;
+    console.log(this.props.winners);
 
     if (this.props.game) {
       if (this.props.game.users.length === this.props.captions.length) {
@@ -146,7 +148,7 @@ class SubmitPage extends Component {
                   <Caption
                     item={caption}
                     key={index}
-                    toggleWinner={this.toggleWinner.bind(this, caption)}
+                    pickWinner={this.pickWinner.bind(this, caption)}
                   />
                 ))
             ) : (
@@ -181,7 +183,12 @@ class SubmitPage extends Component {
           </div>
         ) : null}
         <Remove handleClick={this.removeCaptions} />
-        <button onClick={this.increaseScore}>Increase</button>
+        {this.state.revealButton ? (
+          <EndRoundButton
+            handleWin={this.increaseScore}
+            handleMistake={this.removeWinner}
+          />
+        ) : null}
       </div>
     );
   }

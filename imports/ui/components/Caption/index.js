@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
 
-const Caption = ({ item, toggleWinner }) => (
+const Caption = ({ item, pickWinner }) => (
   <li className="caption">
     {item.title}
     {/* <input id={item._id} checked={item.winner} onChange={toggleWinner} /> */}
-    <button onClick={toggleWinner} id={item._id}>
+    <button onClick={pickWinner} id={item._id}>
       Winner
     </button>
   </li>

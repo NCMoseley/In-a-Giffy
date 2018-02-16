@@ -60,7 +60,6 @@ Meteor.methods({
   },
 
   "games.start"(gameId) {
-    console.log("does this work!!??", gameId);
     Games.update(gameId, {
       $set: {
         started: true

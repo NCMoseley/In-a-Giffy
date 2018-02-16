@@ -28,15 +28,26 @@ Meteor.methods({
   },
 
   // Select winner
-  "submissions.toggleWinner"(item) {
+  "submissions.pickWinner"(item) {
     if (item.owner !== this.userId) {
       throw new Meteor.Error(
-        "data.toggleWinner.not-authorized",
+        "data.pickWinner.not-authorized",
         "You connot update other users data"
       );
     }
     Submissions.update(item._id, {
       $set: { winner: !item.winner }
+    });
+  },
+  "submissions.removeWinner"(item) {
+    if (item.owner !== this.userId) {
+      throw new Meteor.Error(
+        "data.pickWinner.not-authorized",
+        "You connot update other users data"
+      );
+    }
+    Submissions.update(item, {
+      $set: { winner: false }
     });
   },
   // Removing a data
