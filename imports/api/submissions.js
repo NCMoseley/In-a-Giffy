@@ -6,7 +6,6 @@ export const Submissions = new Mongo.Collection("submissions");
 if (Meteor.isServer) {
   Meteor.publish("submissions", function todosPublication() {
     return Submissions.find({});
-    // use { owner: this.userId } to return just the caption submitted by htis user
   });
 }
 
@@ -29,12 +28,6 @@ Meteor.methods({
 
   // Select winner
   "submissions.pickWinner"(item) {
-    if (item.owner !== this.userId) {
-      throw new Meteor.Error(
-        "data.pickWinner.not-authorized",
-        "You connot update other users data"
-      );
-    }
     Submissions.update(item._id, {
       $set: { winner: !item.winner }
     });
