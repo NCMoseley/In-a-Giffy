@@ -36,12 +36,16 @@ class FrontPage extends Component {
   }
 
   render() {
+    // console.log(this.props.input);
     return (
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
+        <form name="gameName" onSubmit={this.createNewGame}>
+          <input type="text" ref={this.props.input} />
+          <button>Create New Game</button>
+        </form>
         <button onClick={this.createNewGame.bind(this)}>Create New Game</button>
-
         <Link to="/gamelisttest">
           <button>Join Game</button>
         </Link>
