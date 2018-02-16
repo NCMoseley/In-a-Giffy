@@ -22,14 +22,20 @@ class FrontPage extends Component {
     super();
 
     this.createNewGame = this.createNewGame.bind(this);
+    this.state = { name: "" };
   }
 
-  createNewGame() {
-    Meteor.call("games.create", (err, gameId) => {
+  handleInputChange(e) {
+    this.setState({ name: e.target.value });
+  }
+
+  createNewGame(event) {
+    event.preventDefault();
+
+    Meteor.call("games.create", this.state.name, (err, gameId) => {
       if (err) {
         console.log("Create game no work?");
       } else {
-        console.log(gameId);
         this.props.history.push(`submitpagetest/${gameId}`);
       }
     });
@@ -42,10 +48,14 @@ class FrontPage extends Component {
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
 
         <form name="gameName" onSubmit={this.createNewGame}>
-          <input type="text" ref={this.props.input} />
-          <button>Create New Game</button>
+          <input
+            type="text"
+            value={this.state.name}
+            onChange={e => this.handleInputChange(e)}
+          />
+          <button>Do not Click</button>
         </form>
-        <button onClick={this.createNewGame.bind(this)}>Create New Game</button>
+
         <Link to="/gamelisttest">
           <button>Join Game</button>
         </Link>

@@ -15,9 +15,9 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   // start a new game
-  async "games.create"(game, input) {
+  async "games.create"(name) {
     // Make sure the user is logged in before inserting a task
-    const gameName = "input";
+    // const gameName = "input";
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
@@ -26,7 +26,7 @@ Meteor.methods({
       started: false,
       users: [this.userId],
       host: { _id: this.userId, username: Meteor.user().username }, // The game creator is judge for round one.
-      gameName: gameName
+      gameName: name
     });
     return newGame;
   },
