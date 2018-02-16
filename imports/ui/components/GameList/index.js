@@ -26,13 +26,14 @@ class GameList extends Component {
           <ul>
             {this.props.games.length > 0 ? (
               this.props.games.map((game, index) => (
-                <li>
+                <li key={game._id}>
                   <Link to={`/submitpagetest/${game._id}`}>
                     <button
                       game={game._id}
                       onClick={this.joinGame.bind(this, game)}
-                    >{`Game ${game._id} hosted by ${game.host
-                      .username}`}</button>
+                    >{`Game ${game._id} hosted by ${
+                      game.host.username
+                    }`}</button>
                   </Link>
                 </li>
               ))
