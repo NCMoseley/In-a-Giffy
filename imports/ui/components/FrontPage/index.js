@@ -22,7 +22,7 @@ class FrontPage extends Component {
     super();
 
     this.createNewGame = this.createNewGame.bind(this);
-    this.state = { name: "" };
+    this.state = { name: `${Meteor.user().username}'s Game` };
   }
 
   handleInputChange(e) {
@@ -42,7 +42,6 @@ class FrontPage extends Component {
   }
 
   render() {
-    // console.log(this.props.input);
     return (
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
@@ -53,11 +52,12 @@ class FrontPage extends Component {
             value={this.state.name}
             onChange={e => this.handleInputChange(e)}
           />
-          <button>Do not Click</button>
+          <br />
+          <button>Start a New Game</button>
         </form>
 
         <Link to="/gamelisttest">
-          <button>Join Game</button>
+          <button>Join a Game</button>
         </Link>
       </div>
     );
