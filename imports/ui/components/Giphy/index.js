@@ -9,9 +9,7 @@ const GiphyResult = ({ url }) => {
       style={{
         backgroundImage: `url(${url})`
       }}
-    >
-      <p>{url}</p>
-    </div>
+    />
   );
 };
 

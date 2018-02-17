@@ -178,7 +178,7 @@ class SubmitPage extends Component {
                   />
                 ))
             ) : (
-              <p> No caption to display </p>
+              <p>No captions yet...</p>
             )}
           </ul>
         ) : null}
