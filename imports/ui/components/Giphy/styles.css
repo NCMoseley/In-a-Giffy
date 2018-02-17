@@ -1,8 +1,8 @@
 .giphy-image-container {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 50%;
   background-size: contain;
-  background-position: center center;
+  background-position: bottom center;
   background-repeat: no-repeat;
   color: white;
 }
