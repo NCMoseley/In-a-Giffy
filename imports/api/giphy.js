@@ -15,7 +15,7 @@ Meteor.methods({
     const apiKey = "W9getAhiytCkVjqRtffNqlpcoX7kglmp"; // dev use only. TODO: request production key: https://developers.giphy.com/dashboard/apply/19405/
     const searchQuery = ""; // optional search query
     const apiEndpoint = apiUrl + "?api_key=" + apiKey + "&tag=" + searchQuery;
-    // console.log("API Endpoint: ", apiEndpoint);
+    console.log("Running giphyUrls.getImage server-side...");
 
     const getApi = (type, url, options) => {
       return new Promise((resolve, reject) => {

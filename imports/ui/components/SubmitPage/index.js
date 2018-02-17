@@ -118,6 +118,7 @@ class SubmitPage extends Component {
   }
 
   getImage() {
+    console.log('SubMitPage/index.js calling "giphyUrls.getImage"...');
     Meteor.call("giphyUrls.getImage", this.props.game._id);
   }
 
@@ -142,8 +143,10 @@ class SubmitPage extends Component {
     if (this.props.game) {
       judge = this.props.game.users[0].id;
     }
-    console.log(judge);
-    // console.log(this.props.currentUserId);
+    console.log(
+      "SubMitPage/index.js > this.props.currentGiphyUrl",
+      this.props.currentGiphyUrl
+    );
 
     return (
       <div className="submit-page-wrapper">
@@ -187,7 +190,8 @@ class SubmitPage extends Component {
 
         {judge === this.props.currentUserId ? (
           <div>
-            <StartButton handleClick={this.getImage} />
+            <StartButton handleClick={this.getImage} />{" "}
+            {/* Let's get Giffy With It */}
             <StartRoundButton handleClick={this.gameStart} />
           </div>
         ) : null}
