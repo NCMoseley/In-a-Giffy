@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
+import { BrowserRouter, Link } from "react-router-dom";
 import "./styles.css";
 
 // import collections
@@ -38,6 +39,7 @@ class SubmitPage extends Component {
     this.increaseScore = this.increaseScore.bind(this);
     this.removeWinner = this.removeWinner.bind(this);
     this.toggleJudge = this.toggleJudge.bind(this);
+    this.removeGame = this.removeGame.bind(this);
   }
 
   // toggle the checkbox to denote completion status
@@ -71,8 +73,6 @@ class SubmitPage extends Component {
 
   addData(event) {
     event.preventDefault();
-
-    console.log(this.dataInput.value);
     if (this.dataInput.value) {
       Meteor.call(
         "submissions.addData",
@@ -101,10 +101,18 @@ class SubmitPage extends Component {
       revealButton: !this.state.revealButton,
       hidden: !this.state.hidden
     });
-    let winner = this.props.game.users.find(user => user.score > 1);
+    let winner = this.props.game.users.find(user => user.score > 0);
     if (winner) {
       Meteor.call("games.over", this.props.game._id);
-      console.log("yo");
+    }
+  }
+
+  removeGame() {
+    if (
+      this.props.currentUserId === this.props.game &&
+      this.props.game.users[0].id
+    ) {
+      Meteor.call("games.removeGame", this.props.game._id);
     }
   }
 
@@ -149,7 +157,7 @@ class SubmitPage extends Component {
     );
 
     let gameWinner = this.props.game
-      ? this.props.game.users.find(user => user.score > 1)
+      ? this.props.game.users.find(user => user.score > 0)
       : null;
 
     // console.log(this.props.game ? gameWinner.username : null);
@@ -212,6 +220,9 @@ class SubmitPage extends Component {
         {this.props.game
           ? ` ${gameWinner.username} is Gif Champion of the universe!`
           : null}
+        <Link to="/">
+          <button onClick={this.removeGame}>Let's Gif More</button>
+        </Link>
       </div>
     );
   }

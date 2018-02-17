@@ -88,11 +88,11 @@ Meteor.methods({
     );
   },
 
-  // "games.endGame"(gameId) {
-  //   Games.remove(gameId, {
-  //     _id: gameId
-  //   });
-  // },
+  "games.removeGame"(gameId) {
+    Games.remove(gameId, {
+      _id: gameId
+    });
+  },
 
   "games.toggleJudge"(game) {
     const players = game.users;
