@@ -14,7 +14,7 @@ class Caption extends React.Component {
       judge = this.props.users.users[0].id;
     }
 
-    console.log(this.props.users ? judge : null);
+    // console.log(this.props.users ? judge : null);
 
     return (
       <li className="caption">

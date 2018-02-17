@@ -25,7 +25,8 @@ class SubmitPage extends Component {
     super();
     this.state = {
       hidden: false,
-      revealButton: false
+      revealButton: false,
+      gameWin: false
     };
 
     this.addData = this.addData.bind(this);
@@ -97,8 +98,14 @@ class SubmitPage extends Component {
     );
     Meteor.call("submissions.removeData");
     this.setState({
-      revealButton: !this.state.revealButton
+      revealButton: !this.state.revealButton,
+      hidden: !this.state.hidden
     });
+    let winner = this.props.game.users.find(user => user.score > 1);
+    if (winner) {
+      Meteor.call("games.over", this.props.game._id);
+      console.log("yo");
+    }
   }
 
   // remove a to do from the list
@@ -126,15 +133,8 @@ class SubmitPage extends Component {
   // }
 
   render() {
-    // console.log(this.props.winners[0] ? this.props.winners[0].owner : null);
-
-    // console.log(this.props.game ? this.props.game.users : null);
-
-    // console.log(this.props.winners);
-
     if (this.props.game) {
       if (this.props.game.users.length === this.props.captions.length) {
-        console.log("it worked");
       }
     }
 
@@ -142,10 +142,14 @@ class SubmitPage extends Component {
     if (this.props.game) {
       judge = this.props.game.users[0].id;
     }
-    console.log(judge);
-    // console.log(this.props.currentUserId);
 
-    return (
+    let gameWinner = this.props.game
+      ? this.props.game.users.find(user => user.score > 1)
+      : null;
+
+    // console.log(this.props.game ? gameWinner.username : null);
+
+    return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
         {this.props.game &&
         this.props.game.users.length >= this.props.captions.length - 1 ? (
@@ -165,14 +169,13 @@ class SubmitPage extends Component {
             )}
           </ul>
         ) : null}
-        {this.props.currentUserId === judge ||
+        {/* {this.props.currentUserId === judge ||
         (this.props.currentUserId !== judge && this.props.game
           ? this.props.game.started
-          : null) ? (
-          <Giphy
-            url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
-          />
-        ) : null}
+          : null) ? ( */}
+        <Giphy
+          url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
+        />
 
         {this.props.currentUserId !== judge ? (
           <div className="add-data">
@@ -181,10 +184,8 @@ class SubmitPage extends Component {
               input={ref => (this.dataInput = ref)}
               hidden={this.state.hidden}
             />
-            {/* <button onClick={this.getWinners}> working? </button> */}
           </div>
         ) : null}
-
         {judge === this.props.currentUserId ? (
           <div>
             <StartButton handleClick={this.getImage} />
@@ -199,6 +200,12 @@ class SubmitPage extends Component {
           />
         ) : null}
         <button onClick={this.toggleJudge}>Test judge toggle</button>
+      </div>
+    ) : (
+      <div>
+        {this.props.game
+          ? ` ${gameWinner.username} is Gif Champion of the universe!`
+          : null}
       </div>
     );
   }
@@ -224,6 +231,7 @@ export default withTracker(({ match }) => {
   const game = Games.findOne({ _id: match.params.id });
   const winners = Submissions.find({ winner: true }).fetch();
   const theWinners = Winners.find({}).fetch();
+
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),

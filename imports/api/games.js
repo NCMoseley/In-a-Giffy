@@ -24,7 +24,8 @@ Meteor.methods({
 
     const newGame = Games.insert({
       createdAt: new Date(),
-      started: false,
+      started: true,
+      over: false,
       users: [
         {
           id: this.userId,
@@ -50,7 +51,11 @@ Meteor.methods({
     if (players.includes(this.userId)) {
       console.log("player is already in the game");
     } else {
-      players.push({ id: this.userId, score: 0 });
+      players.push({
+        id: this.userId,
+        score: 0,
+        username: Meteor.user().username
+      });
     }
 
     Games.update(game._id, {
@@ -68,12 +73,26 @@ Meteor.methods({
     });
   },
 
+  "games.over"(gameId) {
+    Games.update(gameId, {
+      $set: {
+        over: true
+      }
+    });
+  },
+
   "games.score"(game, user) {
     Games.update(
       { _id: game, "users.id": user },
       { $inc: { "users.$.score": 1 } }
     );
   },
+
+  // "games.endGame"(gameId) {
+  //   Games.remove(gameId, {
+  //     _id: gameId
+  //   });
+  // },
 
   "games.toggleJudge"(game) {
     const players = game.users;

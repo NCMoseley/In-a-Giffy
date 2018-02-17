@@ -6,12 +6,8 @@ class CaptionField extends React.Component {
     return (
       <div>
         <form name="addData" onSubmit={this.props.handleSubmit}>
-          <input
-            type="text"
-            ref={this.props.input}
-            hidden={this.props.hidden}
-          />
-          <button hidden={this.props.hidden} onClick={this.props.start}>
+          <input type="text" ref={this.props.input} hidden={false} />
+          <button hidden={false} onClick={this.props.start}>
             Submit
           </button>
         </form>

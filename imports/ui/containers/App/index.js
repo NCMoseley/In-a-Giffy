@@ -26,7 +26,7 @@ class App extends Component {
 
   render() {
     // console.log("re-render??>");
-    console.log(this.props.currentGiphyUrl);
+    // console.log(this.props.currentGiphyUrl);
     let number = this.props.data.length;
     return (
       <div className="app-wrapper">
@@ -71,12 +71,12 @@ App.propTypes = {
 export default withTracker(() => {
   const handle = Meteor.subscribe("giphyUrls"); // map from Mongo database to props
   const game = Meteor.subscribe("Games");
-  const url = GiphyUrls.findOne();
+  // const url = GiphyUrls.findOne();
 
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    currentGiphyUrl: url,
+    // currentGiphyUrl: url,
     currentGame: Games.find().fetch()
   };
 })(App);
