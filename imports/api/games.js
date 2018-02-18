@@ -25,7 +25,9 @@ Meteor.methods({
     const newGame = Games.insert({
       createdAt: new Date(),
       started: false,
+      displayWinner: false,
       over: false,
+      username: Meteor.user().username,
       users: [
         {
           id: this.userId,
