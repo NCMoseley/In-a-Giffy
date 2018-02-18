@@ -177,15 +177,15 @@ class SubmitPage extends Component {
             )}
           </ul>
         ) : null}
-        {/* {this.props.currentUserId === judge ||
-        (this.props.currentUserId !== judge && this.props.game
-          ? this.props.game.started
-          : null) ? ( */}
-        <Giphy
-          url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
-        />
 
-        {this.props.currentUserId !== judge ? (
+        {this.props.currentUserId === judge ||
+        (this.props.currentUserId !== judge && this.props.game.started) ? (
+          <Giphy
+            url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
+          />
+        ) : null}
+
+        {this.props.currentUserId !== judge && this.props.game.started ? (
           <div className="add-data">
             <CaptionField
               handleSubmit={this.addData}
@@ -194,6 +194,7 @@ class SubmitPage extends Component {
             />
           </div>
         ) : null}
+
         {judge === this.props.currentUserId ? (
           <div className="startbutton">
             <StartButton handleClick={this.getImage} />{" "}
