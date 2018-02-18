@@ -25,7 +25,9 @@ Meteor.methods({
     const newGame = Games.insert({
       createdAt: new Date(),
       started: false,
+      displayWinner: false,
       over: false,
+      username: Meteor.user().username,
       users: [
         {
           id: this.userId,
@@ -69,6 +71,14 @@ Meteor.methods({
     Games.update(gameId, {
       $set: {
         started: true
+      }
+    });
+  },
+
+  "games.stop"(gameId) {
+    Games.update(gameId, {
+      $set: {
+        started: false
       }
     });
   },

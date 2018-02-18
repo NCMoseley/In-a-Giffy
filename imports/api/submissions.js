@@ -20,6 +20,7 @@ Meteor.methods({
     }
     Submissions.insert({
       game: gameId,
+      username: Meteor.user().username,
       title: inputValue,
       winner: false,
       owner: this.userId

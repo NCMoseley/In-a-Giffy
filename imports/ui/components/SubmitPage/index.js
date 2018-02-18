@@ -37,7 +37,6 @@ class SubmitPage extends Component {
     this.getWinners = this.getWinners.bind(this);
     this.increaseScore = this.increaseScore.bind(this);
     this.removeWinner = this.removeWinner.bind(this);
-    this.toggleJudge = this.toggleJudge.bind(this);
     this.removeGame = this.removeGame.bind(this);
   }
 
@@ -62,10 +61,6 @@ class SubmitPage extends Component {
   //appending game on text to notify players game is on
   gameStart() {
     Meteor.call("games.start", this.props.game._id);
-  }
-
-  toggleJudge() {
-    Meteor.call("games.toggleJudge", this.props.game);
   }
 
   // adding a new caption
@@ -100,17 +95,21 @@ class SubmitPage extends Component {
       revealButton: !this.state.revealButton,
       hidden: !this.state.hidden
     });
-    let winner = this.props.game.users.find(user => user.score > 0);
-    if (winner) {
-      Meteor.call("games.over", this.props.game._id);
-    }
+
+    setTimeout(() => {
+      let winner = this.props.game.users.find(user => user.score > 1);
+      if (winner) {
+        Meteor.call("games.over", this.props.game._id);
+      } else {
+        Meteor.call("games.toggleJudge", this.props.game);
+        Meteor.call("games.stop", this.props.game._id);
+        Meteor.call("giphyUrls.getImage", this.props.game._id);
+      }
+    }, 100);
   }
 
   removeGame() {
-    if (
-      this.props.currentUserId === this.props.game &&
-      this.props.game.users[0].id
-    ) {
+    if (this.props.game && this.props.game._id) {
       Meteor.call("games.removeGame", this.props.game._id);
     }
   }
@@ -152,7 +151,7 @@ class SubmitPage extends Component {
     }
 
     let gameWinner = this.props.game
-      ? this.props.game.users.find(user => user.score > 0)
+      ? this.props.game.users.find(user => user.score > 1)
       : null;
 
     console.log("SubMitPage/index.js > this.props.game", this.props.game);
@@ -199,7 +198,7 @@ class SubmitPage extends Component {
           <div className="startbutton">
             <StartButton handleClick={this.getImage} />{" "}
             {/* Let's get Giffy With It */}
-            {this.props.game.users.length > 2 ? (
+            {this.props.game.users.length > 0 ? (
               <StartRoundButton handleClick={this.gameStart} />
             ) : (
               <p>
@@ -217,8 +216,6 @@ class SubmitPage extends Component {
             handleMistake={this.removeWinner}
           />
         ) : null}
-
-        <button onClick={this.toggleJudge}>Test judge toggle</button>
       </div>
     ) : (
       <div>
