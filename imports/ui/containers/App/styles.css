@@ -190,8 +190,21 @@ form.gameName input {
   min-width: 50vw;
   text-align: center;
   font-style: italic;
-  color: lightgray;
+  color: rgba(200, 200, 200);
   font-size: 3.5vw;
+  animation: 1.5s blink ease infinite;
+}
+@keyframes blink {
+  from,
+  to {
+    color: rgba(200, 200, 200, 0.3);
+  }
+  50% {
+    color: lightgray;
+  }
+}
+form.gameName input:focus {
+  animation: none;
 }
 
 .joinform {
