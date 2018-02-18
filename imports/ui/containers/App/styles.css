@@ -217,3 +217,9 @@ form.gameName input:focus {
 .joinform:hover {
   border: 2px solid white;
 }
+/* .nextgif {
+  margin: 0 auto;
+} */
+.startbutton {
+  text-align: center;
+}
