@@ -27,11 +27,12 @@ Meteor.methods({
       started: false,
       displayWinner: false,
       over: false,
-      username: Meteor.user().username,
+
       users: [
         {
           id: this.userId,
-          score: 0
+          score: 0,
+          username: Meteor.user().username
         }
       ],
 
@@ -112,6 +113,21 @@ Meteor.methods({
     Games.update(game._id, {
       $set: {
         users: players
+      }
+    });
+  },
+  "games.displayWinner"(gameId) {
+    Games.update(gameId, {
+      $set: {
+        displayWinner: true
+      }
+    });
+  },
+
+  "games.hideWinner"(gameId) {
+    Games.update(gameId, {
+      $set: {
+        displayWinner: false
       }
     });
   }

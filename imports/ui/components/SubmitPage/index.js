@@ -90,7 +90,8 @@ class SubmitPage extends Component {
       this.props.game._id,
       this.props.winners[0] ? this.props.winners[0].owner : null
     );
-    Meteor.call("submissions.removeData");
+    Meteor.call("games.displayWinner", this.props.game._id);
+
     this.setState({
       revealButton: !this.state.revealButton,
       hidden: !this.state.hidden
@@ -104,8 +105,10 @@ class SubmitPage extends Component {
         Meteor.call("games.toggleJudge", this.props.game);
         Meteor.call("games.stop", this.props.game._id);
         Meteor.call("giphyUrls.getImage", this.props.game._id);
+        Meteor.call("games.hideWinner", this.props.game._id);
+        Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 100);
+    }, 2000);
   }
 
   removeGame() {
@@ -216,15 +219,23 @@ class SubmitPage extends Component {
             handleMistake={this.removeWinner}
           />
         ) : null}
+        {this.props.winners[0] && this.props.game.displayWinner ? (
+          <p>
+            {this.props.winners[0] ? this.props.winners[0].username : null} is
+            the original gangster of gifs
+          </p>
+        ) : null}
       </div>
     ) : (
       <div>
-        {this.props.game
-          ? ` ${gameWinner.username} is Gif Champion of the universe!`
-          : null}
-        <Link to="/">
-          <button onClick={this.removeGame}>Let's Gif More</button>
-        </Link>
+        <div>
+          {this.props.game
+            ? ` ${gameWinner.username} is Gif Champion of the universe!`
+            : null}
+          <Link to="/">
+            <button onClick={this.removeGame}>Let's Gif More</button>
+          </Link>
+        </div>
       </div>
     );
   }
