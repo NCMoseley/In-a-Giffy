@@ -45,8 +45,10 @@ Meteor.methods({
     });
   },
   // Removing a data
-  "submissions.removeData"() {
-    Submissions.remove({});
+  "submissions.removeData"(gameId) {
+    Submissions.remove({
+      game: gameId
+    });
   },
   // Removing all winnerd data
   "data.removewinnerd"(owner) {
