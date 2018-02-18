@@ -45,19 +45,24 @@ class FrontPage extends Component {
     return (
       <div className="content-wrapper">
         <img className="logo" src="images/iaglogo.png" alt="In a .giffy!" />
-
-        <form name="gameName" onSubmit={this.createNewGame}>
+        <form
+          className="gameName"
+          name="gameName"
+          onSubmit={this.createNewGame}
+        >
+          <button>Start a New Game</button>
+          <h3> Select a title: </h3>
           <input
             type="text"
             value={this.state.name}
             onChange={e => this.handleInputChange(e)}
           />
-          <br />
-          <button>Start a New Game</button>
         </form>
 
         <Link to="/gamelisttest">
-          <button>Join a Game</button>
+          <div className="joinform">
+            <button>Join a Game</button>
+          </div>
         </Link>
       </div>
     );

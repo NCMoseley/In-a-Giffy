@@ -36,8 +36,9 @@
 }
 
 .accounts-dialog {
-  background-color: white;
-  border: 1px solid #dbdbdb;
+  background-color: rgba(255, 110, 54, 0.71);
+  /* border: 1px solid #dbdbdb; */
+
   border-radius: 5px;
   padding: 0.5rem 0.5rem 1rem;
   text-align: left;
@@ -50,8 +51,9 @@
 .accounts-dialog input {
   border: 0;
   border-bottom: 1px solid #8f8f8f;
-  color: #8f8f8f;
+  color: black;
   font-size: 0.9rem;
+  background: white;
 }
 
 .accounts-dialog input:focus {
