@@ -14,7 +14,6 @@ import { Winners } from "/imports/api/winners";
 import AccountsUI from "/imports/ui/components/AccountUIWrapper";
 import Caption from "/imports/ui/components/Caption";
 import CaptionField from "/imports/ui/components/CaptionField";
-import DataItem from "/imports/ui/components/DataItem";
 import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
 import StartButton from "/imports/ui/components/StartButton";
 import StartRoundButton from "/imports/ui/components/StartRoundButton";

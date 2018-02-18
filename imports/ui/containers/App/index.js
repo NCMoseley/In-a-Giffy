@@ -14,7 +14,6 @@ import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collect
 // import components
 import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
 import CaptionField from "/imports/ui/components/CaptionField";
-import DataItem from "/imports/ui/components/DataItem/index";
 import FrontPage from "/imports/ui/components/FrontPage";
 import StartButton from "/imports/ui/components/StartButton";
 import { Submissions } from "/imports/api/submissions";

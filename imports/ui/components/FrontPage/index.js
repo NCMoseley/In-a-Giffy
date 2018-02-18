@@ -15,7 +15,6 @@ import { Submissions } from "/imports/api/submissions";
 // import components
 import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
 import CaptionField from "/imports/ui/components/CaptionField";
-import DataItem from "/imports/ui/components/DataItem/index";
 
 class FrontPage extends Component {
   constructor() {
