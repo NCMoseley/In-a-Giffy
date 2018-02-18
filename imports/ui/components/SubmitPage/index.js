@@ -150,16 +150,12 @@ class SubmitPage extends Component {
     if (this.props.game) {
       judge = this.props.game.users[0].id;
     }
-    console.log(
-      "SubMitPage/index.js > this.props.currentGiphyUrl",
-      this.props.currentGiphyUrl
-    );
 
     let gameWinner = this.props.game
       ? this.props.game.users.find(user => user.score > 0)
       : null;
 
-    // console.log(this.props.game ? gameWinner.username : null);
+    console.log("SubMitPage/index.js > this.props.game", this.props.game);
 
     return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
@@ -202,16 +198,25 @@ class SubmitPage extends Component {
           <div>
             <StartButton handleClick={this.getImage} />{" "}
             {/* Let's get Giffy With It */}
-            <StartRoundButton handleClick={this.gameStart} />
+            {this.props.game.users.length > 2 ? (
+              <StartRoundButton handleClick={this.gameStart} />
+            ) : (
+              <p>
+                Need {3 - this.props.game.users.length} more player(s) to start
+                the round.
+              </p>
+            )}
           </div>
         ) : null}
         <Remove handleClick={this.removeCaptions} />
+
         {this.state.revealButton ? (
           <EndRoundButton
             handleWin={this.increaseScore}
             handleMistake={this.removeWinner}
           />
         ) : null}
+
         <button onClick={this.toggleJudge}>Test judge toggle</button>
       </div>
     ) : (
