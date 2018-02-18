@@ -5,6 +5,7 @@
   /*NOTE: Lets fine tune this */
   position: relative;
   width: 45vw;
+  max-width: 450px;
   margin-bottom: 1rem;
   z-index: -1000;
 
@@ -206,7 +207,6 @@ form.gameName input {
 form.gameName input:focus {
   animation: none;
 }
-
 .joinform {
   min-width: 50vw;
   text-align: center;
@@ -217,9 +217,16 @@ form.gameName input:focus {
 .joinform:hover {
   border: 2px solid white;
 }
-/* .nextgif {
-  margin: 0 auto;
-} */
+.nextgif {
+  padding: 1rem;
+}
+.nextgif button:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
 .startbutton {
   text-align: center;
+}
+.startbutton:hover {
+  cursor: pointer;
 }
