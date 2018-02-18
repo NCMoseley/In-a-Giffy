@@ -39,6 +39,7 @@ class SubmitPage extends Component {
     this.removeWinner = this.removeWinner.bind(this);
     this.toggleJudge = this.toggleJudge.bind(this);
     this.removeGame = this.removeGame.bind(this);
+    this.declareWinner = this.declareWinner.bind(this);
   }
 
   // toggle the checkbox to denote completion status
@@ -65,6 +66,10 @@ class SubmitPage extends Component {
   }
 
   toggleJudge() {
+    let winner = this.props.game.users.find(user => user.score > 0);
+    if (winner) {
+      Meteor.call("games.over", this.props.game._id);
+    }
     Meteor.call("games.toggleJudge", this.props.game);
   }
 
@@ -100,17 +105,20 @@ class SubmitPage extends Component {
       revealButton: !this.state.revealButton,
       hidden: !this.state.hidden
     });
-    let winner = this.props.game.users.find(user => user.score > 0);
-    if (winner) {
-      Meteor.call("games.over", this.props.game._id);
-    }
+    setTimeout(() => {
+      let winner = this.props.game.users.find(user => user.score > 0);
+      if (winner) {
+        Meteor.call("games.over", this.props.game._id);
+      } else {
+        Meteor.call("games.toggleJudge", this.props.game);
+      }
+    }, 200);
   }
 
+  declareWinner() {}
+
   removeGame() {
-    if (
-      this.props.currentUserId === this.props.game &&
-      this.props.game.users[0].id
-    ) {
+    if (this.props.game && this.props.game._id) {
       Meteor.call("games.removeGame", this.props.game._id);
     }
   }
@@ -199,7 +207,7 @@ class SubmitPage extends Component {
           <div>
             <StartButton handleClick={this.getImage} />{" "}
             {/* Let's get Giffy With It */}
-            {this.props.game.users.length > 2 ? (
+            {this.props.game.users.length > 0 ? (
               <StartRoundButton handleClick={this.gameStart} />
             ) : (
               <p>
@@ -218,7 +226,9 @@ class SubmitPage extends Component {
           />
         ) : null}
 
-        <button onClick={this.toggleJudge}>Test judge toggle</button>
+        {this.props.currentUserId === judge ? (
+          <button onClick={this.toggleJudge}>Next Round</button>
+        ) : null}
       </div>
     ) : (
       <div>

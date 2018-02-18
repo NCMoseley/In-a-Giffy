@@ -73,6 +73,14 @@ Meteor.methods({
     });
   },
 
+  "games.stop"(gameId) {
+    Games.update(gameId, {
+      $set: {
+        started: false
+      }
+    });
+  },
+
   "games.over"(gameId) {
     Games.update(gameId, {
       $set: {
