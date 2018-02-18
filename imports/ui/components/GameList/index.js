@@ -23,6 +23,7 @@ class GameList extends Component {
     return (
       <div className="content-wrapper">
         <div>
+          <h1>Join a Game</h1>
           <ul>
             {this.props.games.length > 0 ? (
               this.props.games.map((game, index) => (
