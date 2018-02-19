@@ -163,7 +163,7 @@ class SubmitPage extends Component {
     return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
         {this.props.game &&
-        this.props.game.users.length >= this.props.captions.length - 1 &&
+        this.props.captions.length >= this.props.game.users.length - 1 &&
         !this.props.game.displayWinner ? (
           <ul>
             {this.props.captions.length > 0 ? (
@@ -207,7 +207,7 @@ class SubmitPage extends Component {
         {judge === this.props.currentUserId &&
         !this.props.game.displayWinner ? (
           <div>
-            <StartButton handleClick={this.getImage} />{" "}
+            <StartButton handleClick={this.getImage} />
             {/* Let's get Giffy With It */}
             {this.props.game.users.length > 0 ? (
               <StartRoundButton handleClick={this.gameStart} />
