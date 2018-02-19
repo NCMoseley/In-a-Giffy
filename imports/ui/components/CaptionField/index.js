@@ -6,10 +6,8 @@ class CaptionField extends React.Component {
     return (
       <div>
         <form name="addData" onSubmit={this.props.handleSubmit}>
-          <input type="text" ref={this.props.input} hidden={false} />
-          <button hidden={false} onClick={this.props.start}>
-            Submit
-          </button>
+          <input type="text" ref={this.props.input} />
+          <button onClick={this.props.start}>Submit</button>
         </form>
       </div>
     );
@@ -17,13 +15,3 @@ class CaptionField extends React.Component {
 }
 
 export default CaptionField;
-
-// export default withTracker(() => {
-//   const handleGame = Meteor.subscribe("games");
-//   const users = Games.find({}).fetch();
-//   return {
-//     currentUserId: Meteor.userId(),
-
-//     users: users
-//   };
-// })(CaptionField);
