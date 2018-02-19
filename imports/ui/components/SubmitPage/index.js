@@ -190,7 +190,11 @@ class SubmitPage extends Component {
           />
         ) : null}
 
-        {this.props.currentUserId !== judge && this.props.game.started ? (
+        {this.props.currentUserId !== judge &&
+        this.props.game.started &&
+        !this.props.captions.find(
+          cap => cap.owner === this.props.currentUserId
+        ) ? (
           <div className="add-data">
             <CaptionField
               handleSubmit={this.addData}
