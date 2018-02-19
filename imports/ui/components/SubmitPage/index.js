@@ -65,6 +65,7 @@ class SubmitPage extends Component {
 
   addData(event) {
     event.preventDefault();
+
     if (this.dataInput.value) {
       Meteor.call(
         "submissions.addData",
@@ -170,7 +171,11 @@ class SubmitPage extends Component {
           />
         ) : null}
 
-        {this.props.currentUserId !== judge && this.props.game.started ? (
+        {this.props.currentUserId !== judge &&
+        this.props.game.started &&
+        !this.props.captions.find(
+          cap => cap.owner === this.props.currentUserId
+        ) ? (
           <div className="add-data">
             <CaptionField
               handleSubmit={this.addData}
@@ -179,11 +184,13 @@ class SubmitPage extends Component {
             />
           </div>
         ) : null}
-
+        {/* this.props.game.started */}
         {judge === this.props.currentUserId &&
         !this.props.game.displayWinner ? (
           <div>
-            <StartButton handleClick={this.getImage} />
+            {this.props.game && !this.props.game.started ? (
+              <StartButton handleClick={this.getImage} />
+            ) : null}
             {/* Let's get Giffy With It */}
             {this.props.game.users.length > 0 ? (
               <StartRoundButton handleClick={this.gameStart} />

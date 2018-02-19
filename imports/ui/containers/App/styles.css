@@ -110,6 +110,7 @@
   border-radius: 5px;
   padding: 1rem;
   width: 60vw;
+  margin: 0 auto;
 }
 
 .add-data form {
@@ -125,12 +126,16 @@
   font-size: 1rem;
   line-height: 1;
   padding: 0.33333rem;
+  width: -webkit-fill-available;
 }
 
 .add-data form input[type="text"]:focus {
   border-bottom-color: #a0b871;
 }
-
+.submitbutton {
+  background-color: rgb(255, 110, 54);
+  border-radius: 5px;
+}
 .add-data form span {
   color: #8f8f8f;
   font-size: 0.9rem;
@@ -219,6 +224,7 @@ form.gameName input:focus {
 }
 .nextgif {
   padding: 1rem;
+  text-align: center;
 }
 .nextgif button:hover {
   cursor: pointer;
@@ -227,6 +233,7 @@ form.gameName input:focus {
 .startbutton {
   text-align: center;
 }
-.startbutton:hover {
+.startbutton button:hover {
   cursor: pointer;
+  font-weight: 700;
 }
