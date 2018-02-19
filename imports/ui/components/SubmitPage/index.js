@@ -108,11 +108,12 @@ class SubmitPage extends Component {
         Meteor.call("games.hideWinner", this.props.game._id);
         Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 2000);
+    }, 4000);
   }
 
   removeGame() {
     if (this.props.game && this.props.game._id) {
+      Meteor.call("submissions.removeData", this.props.game._id);
       Meteor.call("games.removeGame", this.props.game._id);
     }
   }
@@ -162,7 +163,8 @@ class SubmitPage extends Component {
     return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
         {this.props.game &&
-        this.props.game.users.length >= this.props.captions.length - 1 ? (
+        this.props.game.users.length >= this.props.captions.length - 1 &&
+        !this.props.game.displayWinner ? (
           <ul>
             {this.props.captions.length > 0 ? (
               this.props.captions
@@ -180,8 +182,9 @@ class SubmitPage extends Component {
           </ul>
         ) : null}
 
-        {this.props.currentUserId === judge ||
-        (this.props.currentUserId !== judge && this.props.game.started) ? (
+        {(this.props.currentUserId === judge &&
+          !this.props.game.displayWinner) ||
+        (this.props.game.started && !this.props.game.displayWinner) ? (
           <Giphy
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
@@ -197,7 +200,8 @@ class SubmitPage extends Component {
           </div>
         ) : null}
 
-        {judge === this.props.currentUserId ? (
+        {judge === this.props.currentUserId &&
+        !this.props.game.displayWinner ? (
           <div>
             <StartButton handleClick={this.getImage} />{" "}
             {/* Let's get Giffy With It */}
@@ -211,9 +215,8 @@ class SubmitPage extends Component {
             )}
           </div>
         ) : null}
-        <Remove handleClick={this.removeCaptions} />
 
-        {this.state.revealButton ? (
+        {this.state.revealButton && !this.props.game.displayWinner ? (
           <EndRoundButton
             handleWin={this.increaseScore}
             handleMistake={this.removeWinner}
