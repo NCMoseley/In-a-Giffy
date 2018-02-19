@@ -198,16 +198,10 @@ class SubmitPage extends Component {
           </div>
         ) : null}
 
-<<<<<<< HEAD
         {judge === this.props.currentUserId &&
         !this.props.game.displayWinner ? (
           <div>
             <StartButton handleClick={this.getImage} />
-=======
-        {judge === this.props.currentUserId ? (
-          <div className="startbutton">
-            <StartButton handleClick={this.getImage} />{" "}
->>>>>>> 5c4293ed8b0388c59d4ec36c8fa4a66db1cb1d83
             {/* Let's get Giffy With It */}
             {this.props.game.users.length > 0 ? (
               <StartRoundButton handleClick={this.gameStart} />
