@@ -112,6 +112,7 @@ class SubmitPage extends Component {
 
   removeGame() {
     if (this.props.game && this.props.game._id) {
+      Meteor.call("submissions.removeData", this.props.game._id);
       Meteor.call("games.removeGame", this.props.game._id);
     }
   }
@@ -126,11 +127,6 @@ class SubmitPage extends Component {
   // }
 
   render() {
-    if (this.props.game) {
-      if (this.props.game.users.length === this.props.captions.length) {
-      }
-    }
-
     let judge;
     if (this.props.game) {
       judge = this.props.game.users[0].id;
@@ -164,8 +160,9 @@ class SubmitPage extends Component {
           </ul>
         ) : null}
 
-        {this.props.currentUserId === judge ||
-        (this.props.currentUserId !== judge && this.props.game.started) ? (
+        {(this.props.currentUserId === judge &&
+          !this.props.game.displayWinner) ||
+        (!this.props.game.displayWinner && this.props.game.started) ? (
           <Giphy
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
