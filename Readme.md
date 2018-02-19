@@ -1,8 +1,8 @@
 ![](https://i.imgflip.com/vpq.jpg)
 
-## Project Title
+## In-A-Giffy
 
-One Paragraph of project description goes here
+This a fun game that allows a group of friends to create hilarious captions on Animated Gifs and see who is the champion of Wit.
 
 ## Getting Started
 

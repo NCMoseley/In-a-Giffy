@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const StartButton = ({ handleClick }) => {
   return (
-    <div>
+    <div className="nextgif">
       <button onClick={handleClick}>Try Another Gif</button>
     </div>
   );

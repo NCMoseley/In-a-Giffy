@@ -1,8 +1,33 @@
 .caption {
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
   border-radius: 4px;
   margin: 0.5rem;
   padding: 0 0.5rem;
   text-align: center;
   color: white;
+  /* position: fixed; */
+  text-shadow: 3px 3px #444;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+}
+.caption:nth-child(2) {
+  background: red;
+}
+.caption:nth-child(3) {
+  background: yellow;
+}
+.caption:nth-child(4) {
+  background: blue;
+}
+.caption:nth-child(5) {
+  background: purple;
+}
+.caption:nth-child(6) {
+  background: green;
+}
+.caption:nth-child(7) {
+  background: yellowgreen;
+}
+.caption button:hover {
+  cursor: pointer;
 }

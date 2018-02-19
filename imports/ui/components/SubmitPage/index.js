@@ -108,12 +108,11 @@ class SubmitPage extends Component {
         Meteor.call("games.hideWinner", this.props.game._id);
         Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 4000);
+    }, 2000);
   }
 
   removeGame() {
     if (this.props.game && this.props.game._id) {
-      Meteor.call("submissions.removeData", this.props.game._id);
       Meteor.call("games.removeGame", this.props.game._id);
     }
   }
@@ -182,19 +181,14 @@ class SubmitPage extends Component {
           </ul>
         ) : null}
 
-        {(this.props.currentUserId === judge &&
-          !this.props.game.displayWinner) ||
-        (this.props.game.started && !this.props.game.displayWinner) ? (
+        {this.props.currentUserId === judge ||
+        (this.props.currentUserId !== judge && this.props.game.started) ? (
           <Giphy
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
         ) : null}
 
-        {this.props.currentUserId !== judge &&
-        this.props.game.started &&
-        !this.props.captions.find(
-          cap => cap.owner === this.props.currentUserId
-        ) ? (
+        {this.props.currentUserId !== judge && this.props.game.started ? (
           <div className="add-data">
             <CaptionField
               handleSubmit={this.addData}
@@ -204,10 +198,16 @@ class SubmitPage extends Component {
           </div>
         ) : null}
 
+<<<<<<< HEAD
         {judge === this.props.currentUserId &&
         !this.props.game.displayWinner ? (
           <div>
             <StartButton handleClick={this.getImage} />
+=======
+        {judge === this.props.currentUserId ? (
+          <div className="startbutton">
+            <StartButton handleClick={this.getImage} />{" "}
+>>>>>>> 5c4293ed8b0388c59d4ec36c8fa4a66db1cb1d83
             {/* Let's get Giffy With It */}
             {this.props.game.users.length > 0 ? (
               <StartRoundButton handleClick={this.gameStart} />
@@ -219,8 +219,9 @@ class SubmitPage extends Component {
             )}
           </div>
         ) : null}
+        <Remove handleClick={this.removeCaptions} />
 
-        {this.state.revealButton && !this.props.game.displayWinner ? (
+        {this.state.revealButton ? (
           <EndRoundButton
             handleWin={this.increaseScore}
             handleMistake={this.removeWinner}
