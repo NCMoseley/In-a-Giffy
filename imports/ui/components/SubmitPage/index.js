@@ -31,7 +31,6 @@ class SubmitPage extends Component {
 
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
-    this.removewinnerd = this.removewinnerd.bind(this);
     this.getImage = this.getImage.bind(this);
     this.getWinners = this.getWinners.bind(this);
     this.increaseScore = this.increaseScore.bind(this);
@@ -117,25 +116,12 @@ class SubmitPage extends Component {
     }
   }
 
-  // remove a to do from the list
-
-  // remove all winnerd to dos from the list
-  removewinnerd() {
-    Meteor.call("data.removewinnerd", this.props.currentUserId);
-  }
-
-  // check if any of the data are winnerd
-  haswinnerd() {
-    let winnerd = this.props.data.filter(data => data.winner);
-    return winnerd.length > 0 ? true : false;
-  }
-
   getImage() {
     console.log('SubMitPage/index.js calling "giphyUrls.getImage"...');
     Meteor.call("giphyUrls.getImage", this.props.game._id);
   }
 
-  // componentDidMount() {
+  // componentWillMount() {
   //   this.props.currentUser && this.dataInput.focus();
   // }
 

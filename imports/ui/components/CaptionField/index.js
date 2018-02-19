@@ -21,13 +21,3 @@ class CaptionField extends React.Component {
 }
 
 export default CaptionField;
-
-// export default withTracker(() => {
-//   const handleGame = Meteor.subscribe("games");
-//   const users = Games.find({}).fetch();
-//   return {
-//     currentUserId: Meteor.userId(),
-
-//     users: users
-//   };
-// })(CaptionField);
