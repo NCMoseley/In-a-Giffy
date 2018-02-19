@@ -21,3 +21,14 @@
   right: 30%;
   z-index: -1000;
 }
+.gangster {
+  /* width: 50%; */
+  text-align: center;
+  position: fixed;
+  top: 18%;
+  right: 30%;
+  font-size: 5rem;
+}
+.gameon {
+  text-align: center;
+}

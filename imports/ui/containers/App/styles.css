@@ -136,6 +136,10 @@
   background-color: rgb(255, 110, 54);
   border-radius: 5px;
 }
+.submitbutton:hover {
+  background-color: grey;
+}
+
 .add-data form span {
   color: #8f8f8f;
   font-size: 0.9rem;
@@ -236,4 +240,15 @@ form.gameName input:focus {
 .startbutton button:hover {
   cursor: pointer;
   font-weight: 700;
+}
+.winning {
+  text-align: center;
+}
+.winning button {
+  border-radius: 5px;
+  background-color: rgb(255, 110, 54);
+  margin: 1rem;
+}
+.winning button:hover {
+  background-color: grey;
 }

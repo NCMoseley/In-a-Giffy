@@ -150,6 +150,7 @@ class SubmitPage extends Component {
                 "https://thumbs.gfycat.com/BelatedWindyCentipede-max-1mb.gif"
                 // "https://media1.tenor.com/images/7a9ae83463ac644fae025eaae5c8768d/tenor.gif?itemid=8137743" Trump
                 // "https://i1.wp.com/the-barnburner.com/wp-content/uploads/2018/02/laughter.gif?resize=390%2C277&ssl=1" Laughter
+                // "https://media1.tenor.com/images/c26a081912a71af8d0e57799c291ced5/tenor.gif?itemid=8524221" Tom Hanks
               }
             />
             <p>Waiting for round start...</p>
@@ -204,7 +205,7 @@ class SubmitPage extends Component {
         {/* this.props.game.started */}
         {judge === this.props.currentUserId &&
         !this.props.game.displayWinner ? (
-          <div>
+          <div className="gameon">
             {this.props.game && !this.props.game.started ? (
               <StartButton handleClick={this.getImage} />
             ) : null}
@@ -229,7 +230,7 @@ class SubmitPage extends Component {
           />
         ) : null}
         {this.props.winners[0] && this.props.game.displayWinner ? (
-          <p>
+          <p className="gangster">
             {this.props.winners[0] ? this.props.winners[0].username : null} is
             the original gangster of gifs
           </p>
