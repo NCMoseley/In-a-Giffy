@@ -1,12 +1,11 @@
 {
   "extends": "airbnb",
-  "parser": "babel-eslint",
-  // "es6": false,
   "env": {
     "browser": true
   },
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
+    "quotes": "double",
     "indent": ["error", 4],
     "max-len": 0,
     "global-require": 0,
