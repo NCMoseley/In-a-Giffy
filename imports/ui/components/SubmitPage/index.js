@@ -17,7 +17,7 @@ import CaptionField from "/imports/ui/components/CaptionField";
 import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
 import StartButton from "/imports/ui/components/StartButton";
 import StartRoundButton from "/imports/ui/components/StartRoundButton";
-import Remove from "/imports/ui/components/Remove";
+
 import EndRoundButton from "/imports/ui/components/EndRoundButton";
 
 class SubmitPage extends Component {
@@ -32,7 +32,6 @@ class SubmitPage extends Component {
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
     this.removewinnerd = this.removewinnerd.bind(this);
-    this.removeCaptions = this.removeCaptions.bind(this);
     this.getImage = this.getImage.bind(this);
     this.getWinners = this.getWinners.bind(this);
     this.increaseScore = this.increaseScore.bind(this);
@@ -118,9 +117,6 @@ class SubmitPage extends Component {
   }
 
   // remove a to do from the list
-  removeCaptions() {
-    Meteor.call("submissions.removeData");
-  }
 
   // remove all winnerd to dos from the list
   removewinnerd() {
@@ -215,7 +211,6 @@ class SubmitPage extends Component {
             )}
           </div>
         ) : null}
-        <Remove handleClick={this.removeCaptions} />
 
         {this.state.revealButton ? (
           <EndRoundButton
