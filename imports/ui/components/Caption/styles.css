@@ -10,7 +10,7 @@
   /* font-size: 2.5rem; */
   text-transform: uppercase;
 }
-.caption:nth-child(2) {
+/* .caption:nth-child(2) {
   background: red;
 }
 .caption:nth-child(3) {
@@ -27,7 +27,7 @@
 }
 .caption:nth-child(7) {
   background: yellowgreen;
-}
+} */
 .caption button:hover {
   cursor: pointer;
 }
