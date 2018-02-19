@@ -2,3 +2,42 @@
   background-color: #444;
   color: white;
 }
+.loadhold {
+  position: fixed;
+  top: 70%;
+  right: 38%;
+}
+.loading {
+  width: 30%;
+  position: relative;
+  /* top: 46%;
+  right: 38%; */
+  z-index: 1000;
+}
+.holdon {
+  width: 50%;
+  position: fixed;
+  top: 18%;
+  right: 30%;
+  z-index: -1000;
+}
+.gangster {
+  text-align: center;
+  padding: 5rem;
+  font-size: 2.5rem;
+}
+.gameon {
+  text-align: center;
+}
+.morebutton {
+  background-color: rgb(255, 110, 54);
+  border-radius: 5px;
+  margin: 1rem;
+}
+.morebutton:hover {
+  background-color: grey;
+}
+.randomtext {
+  margin: 1rem;
+  position: absolute;
+}

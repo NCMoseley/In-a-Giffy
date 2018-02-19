@@ -100,6 +100,9 @@ class SubmitPage extends Component {
       let winner = this.props.game.users.find(user => user.score > 1);
       if (winner) {
         Meteor.call("games.over", this.props.game._id);
+        setTimeout(() => {
+          Meteor.call("games.removeGame", this.props.game._id);
+        }, 3000);
       } else {
         Meteor.call("games.toggleJudge", this.props.game);
         Meteor.call("games.stop", this.props.game._id);
@@ -107,7 +110,7 @@ class SubmitPage extends Component {
         Meteor.call("games.hideWinner", this.props.game._id);
         Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 2000);
+    }, 5000);
   }
 
   removeGame() {
@@ -140,6 +143,21 @@ class SubmitPage extends Component {
 
     return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
+        {this.props.currentUserId !== judge && !this.props.game.started ? (
+          <div className="loadhold">
+            <img
+              className="holdon"
+              alt={"Loading-hold"}
+              src={
+                "https://thumbs.gfycat.com/BelatedWindyCentipede-max-1mb.gif"
+                // "https://media1.tenor.com/images/7a9ae83463ac644fae025eaae5c8768d/tenor.gif?itemid=8137743" Trump
+                // "https://i1.wp.com/the-barnburner.com/wp-content/uploads/2018/02/laughter.gif?resize=390%2C277&ssl=1" Laughter
+                // "https://media1.tenor.com/images/c26a081912a71af8d0e57799c291ced5/tenor.gif?itemid=8524221" Tom Hanks
+              }
+            />
+            <p>Waiting for round start...</p>
+          </div>
+        ) : null}
         {this.props.game &&
         this.props.captions.length >= this.props.game.users.length - 1 &&
         !this.props.game.displayWinner ? (
@@ -155,11 +173,10 @@ class SubmitPage extends Component {
                   />
                 ))
             ) : (
-              <p>No captions yet...</p>
+              <p className="randomtext">No captions yet...</p>
             )}
           </ul>
         ) : null}
-
         {(this.props.currentUserId === judge &&
           !this.props.game.displayWinner) ||
         (!this.props.game.displayWinner && this.props.game.started) ? (
@@ -167,7 +184,6 @@ class SubmitPage extends Component {
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
         ) : null}
-
         {this.props.currentUserId !== judge &&
         this.props.game.started &&
         !this.props.captions.find(
@@ -184,24 +200,24 @@ class SubmitPage extends Component {
         {/* this.props.game.started */}
         {judge === this.props.currentUserId &&
         !this.props.game.displayWinner ? (
-          <div>
+          <div className="gameon">
             {this.props.game && !this.props.game.started ? (
               <StartButton handleClick={this.getImage} />
             ) : null}
             {/* Let's get Giffy With It */}
-            {this.props.game.users.length > 0 && !this.props.game.started ? (
+            {this.props.game.users.length > 0 &&
+            (this.props.game && !this.props.game.started) ? (
               <StartRoundButton handleClick={this.gameStart} />
-            ) : !this.props.game.started ? (
+            ) : !this.props.game.users.length > 0 ? (
               <p>
                 Need {3 - this.props.game.users.length} more player(s) to start
                 the round.
               </p>
             ) : (
-              <p> Game On</p>
+              <h2>GAME ON</h2>
             )}
           </div>
         ) : null}
-
         {this.state.revealButton ? (
           <EndRoundButton
             handleWin={this.increaseScore}
@@ -209,10 +225,19 @@ class SubmitPage extends Component {
           />
         ) : null}
         {this.props.winners[0] && this.props.game.displayWinner ? (
-          <p>
-            {this.props.winners[0] ? this.props.winners[0].username : null} is
-            the original gangster of gifs
-          </p>
+          <div className="gangster">
+            <p>
+              {this.props.winners[0] ? this.props.winners[0].username : null} is
+              the original gangster of gifs!
+            </p>
+            <img
+              className="loading"
+              alt={"Loading-gif"}
+              src={
+                "https://loading.io/spinners/wave/lg.wave-ball-preloader.gif"
+              }
+            />
+          </div>
         ) : null}
       </div>
     ) : (
@@ -222,7 +247,9 @@ class SubmitPage extends Component {
             ? ` ${gameWinner.username} is Gif Champion of the universe!`
             : null}
           <Link to="/">
-            <button onClick={this.removeGame}>Let's Gif More</button>
+            <button className="morebutton" onClick={this.removeGame}>
+              Let's Gif More!
+            </button>
           </Link>
         </div>
       </div>
