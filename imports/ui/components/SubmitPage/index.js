@@ -3,7 +3,6 @@ import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import { BrowserRouter, Link } from "react-router-dom";
 import "./styles.css";
-// import Gif from "../../../../public/images/tts-loading";
 
 // import collections
 import { Games } from "/imports/api/games";
@@ -108,7 +107,7 @@ class SubmitPage extends Component {
         Meteor.call("games.hideWinner", this.props.game._id);
         Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 5000);
+    }, 9000);
   }
 
   removeGame() {
@@ -154,13 +153,6 @@ class SubmitPage extends Component {
               }
             />
             <p>Waiting for round start...</p>
-            {/* <img
-              className="loading"
-              alt={"Loading-gif"}
-              src={
-                "https://loading.io/spinners/wave/lg.wave-ball-preloader.gif"
-              }
-            /> */}
           </div>
         ) : null}
         {this.props.game &&
@@ -178,7 +170,7 @@ class SubmitPage extends Component {
                   />
                 ))
             ) : (
-              <p>No captions yet...</p>
+              <p className="randomtext">No captions yet...</p>
             )}
           </ul>
         ) : null}
@@ -230,10 +222,19 @@ class SubmitPage extends Component {
           />
         ) : null}
         {this.props.winners[0] && this.props.game.displayWinner ? (
-          <p className="gangster">
-            {this.props.winners[0] ? this.props.winners[0].username : null} is
-            the original gangster of gifs
-          </p>
+          <div className="gangster">
+            <p>
+              {this.props.winners[0] ? this.props.winners[0].username : null} is
+              the original gangster of gifs!
+            </p>
+            <img
+              className="loading"
+              alt={"Loading-gif"}
+              src={
+                "https://loading.io/spinners/wave/lg.wave-ball-preloader.gif"
+              }
+            />
+          </div>
         ) : null}
       </div>
     ) : (
@@ -243,7 +244,9 @@ class SubmitPage extends Component {
             ? ` ${gameWinner.username} is Gif Champion of the universe!`
             : null}
           <Link to="/">
-            <button onClick={this.removeGame}>Let's Gif More</button>
+            <button className="morebutton" onClick={this.removeGame}>
+              Let's Gif More!
+            </button>
           </Link>
         </div>
       </div>

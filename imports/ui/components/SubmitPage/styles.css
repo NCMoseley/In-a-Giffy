@@ -7,13 +7,13 @@
   top: 70%;
   right: 38%;
 }
-/* .loading {
+.loading {
   width: 30%;
-  position: fixed;
-  top: 16%;
-  right: 38%;
-  z-index: -1000;
-} */
+  position: relative;
+  /* top: 46%;
+  right: 38%; */
+  z-index: 1000;
+}
 .holdon {
   width: 50%;
   position: fixed;
@@ -22,13 +22,22 @@
   z-index: -1000;
 }
 .gangster {
-  /* width: 50%; */
   text-align: center;
-  position: fixed;
-  top: 18%;
-  right: 30%;
-  font-size: 5rem;
+  padding: 5rem;
+  font-size: 2.5rem;
 }
 .gameon {
   text-align: center;
+}
+.morebutton {
+  background-color: rgb(255, 110, 54);
+  border-radius: 5px;
+  margin: 1rem;
+}
+.morebutton:hover {
+  background-color: grey;
+}
+.randomtext {
+  margin: 1rem;
+  position: absolute;
 }
