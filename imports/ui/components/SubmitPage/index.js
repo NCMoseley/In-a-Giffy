@@ -201,13 +201,16 @@ class SubmitPage extends Component {
               <StartButton handleClick={this.getImage} />
             ) : null}
             {/* Let's get Giffy With It */}
-            {this.props.game.users.length > 0 ? (
+            {this.props.game.users.length > 0 &&
+            (this.props.game && !this.props.game.started) ? (
               <StartRoundButton handleClick={this.gameStart} />
-            ) : (
+            ) : !this.props.game.users.length > 0 ? (
               <p>
                 Need {3 - this.props.game.users.length} more player(s) to start
                 the round.
               </p>
+            ) : (
+              <h2>GAME ON</h2>
             )}
           </div>
         ) : null}
