@@ -28,6 +28,13 @@
 .caption:nth-child(7) {
   background: yellowgreen;
 } */
+.caption button {
+  background-color: rgb(255, 110, 54);
+  border-radius: 5px;
+  margin: 1rem;
+}
+
 .caption button:hover {
   cursor: pointer;
+  background-color: grey;
 }
