@@ -1,5 +1,5 @@
 import { Mongo } from "meteor/mongo";
-import { GameLogic, GameStatuses } from "../game/GameLogic.js";
+// import { GameLogic, GameStatuses } from "../game/GameLogic.js";
 
 // If new game selected, display unique game id, that users can use to log in to specific game, when they select join game.
 // display different data for he judge and the other users.
@@ -51,16 +51,14 @@ Meteor.methods({
 
     const players = game.users;
 
- 
-
-    if(players.find(player => player.id === this.userId)){
-      alert("Player is already in the game!")
+    if (players.find(player => player.id === this.userId)) {
+      alert("Player is already in the game!");
     } else {
       players.push({
         id: this.userId,
         score: 0,
         username: Meteor.user().username
-      })
+      });
     }
 
     Games.update(game._id, {

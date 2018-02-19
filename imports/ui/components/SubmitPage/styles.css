@@ -4,7 +4,7 @@
 }
 .loadhold {
   position: fixed;
-  top: 65%;
+  top: 70%;
   right: 38%;
 }
 /* .loading {
@@ -17,7 +17,7 @@
 .holdon {
   width: 50%;
   position: fixed;
-  top: 38%;
-  right: 38%;
+  top: 18%;
+  right: 30%;
   z-index: -1000;
 }
