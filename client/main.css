@@ -180,3 +180,20 @@ body {
   justify-content: center;
   height: 100vh;
 }
+.getready {
+  min-width: 50vw;
+  text-align: center;
+  font-style: italic;
+  color: rgba(200, 200, 200);
+  font-size: 3.5vw;
+  animation: 1.5s blink ease infinite;
+}
+@keyframes blink {
+  from,
+  to {
+    color: rgba(200, 200, 200, 0.3);
+  }
+  50% {
+    color: lightgray;
+  }
+}

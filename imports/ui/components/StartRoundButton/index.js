@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const StartRoundButton = ({ handleClick }) => {
   return (
-    <div>
+    <div className="startbutton">
       <button onClick={handleClick}>Start Round</button>
     </div>
   );

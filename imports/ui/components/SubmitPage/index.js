@@ -66,6 +66,7 @@ class SubmitPage extends Component {
 
   addData(event) {
     event.preventDefault();
+
     if (this.dataInput.value) {
       Meteor.call(
         "submissions.addData",
