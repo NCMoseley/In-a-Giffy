@@ -3,6 +3,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import { BrowserRouter, Link } from "react-router-dom";
 import "./styles.css";
+// import Gif from "../../../../public/images/tts-loading";
 
 // import collections
 import { Games } from "/imports/api/games";
@@ -140,6 +141,27 @@ class SubmitPage extends Component {
 
     return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
+        {this.props.currentUserId !== judge && !this.props.game.started ? (
+          <div className="loadhold">
+            <img
+              className="holdon"
+              alt={"Loading-hold"}
+              src={
+                "https://thumbs.gfycat.com/BelatedWindyCentipede-max-1mb.gif"
+                // "https://media1.tenor.com/images/7a9ae83463ac644fae025eaae5c8768d/tenor.gif?itemid=8137743" Trump
+                // "https://i1.wp.com/the-barnburner.com/wp-content/uploads/2018/02/laughter.gif?resize=390%2C277&ssl=1" Laughter
+              }
+            />
+            <p>Waiting for round start...</p>
+            {/* <img
+              className="loading"
+              alt={"Loading-gif"}
+              src={
+                "https://loading.io/spinners/wave/lg.wave-ball-preloader.gif"
+              }
+            /> */}
+          </div>
+        ) : null}
         {this.props.game &&
         this.props.captions.length >= this.props.game.users.length - 1 &&
         !this.props.game.displayWinner ? (
@@ -159,7 +181,6 @@ class SubmitPage extends Component {
             )}
           </ul>
         ) : null}
-
         {(this.props.currentUserId === judge &&
           !this.props.game.displayWinner) ||
         (!this.props.game.displayWinner && this.props.game.started) ? (
@@ -167,7 +188,6 @@ class SubmitPage extends Component {
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
         ) : null}
-
         {this.props.currentUserId !== judge &&
         this.props.game.started &&
         !this.props.captions.find(
@@ -199,7 +219,6 @@ class SubmitPage extends Component {
             )}
           </div>
         ) : null}
-
         {this.state.revealButton ? (
           <EndRoundButton
             handleWin={this.increaseScore}

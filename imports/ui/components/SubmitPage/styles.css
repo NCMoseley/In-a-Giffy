@@ -2,3 +2,22 @@
   background-color: #444;
   color: white;
 }
+.loadhold {
+  position: fixed;
+  top: 65%;
+  right: 38%;
+}
+/* .loading {
+  width: 30%;
+  position: fixed;
+  top: 16%;
+  right: 38%;
+  z-index: -1000;
+} */
+.holdon {
+  width: 50%;
+  position: fixed;
+  top: 38%;
+  right: 38%;
+  z-index: -1000;
+}
