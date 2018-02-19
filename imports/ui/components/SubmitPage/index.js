@@ -189,13 +189,15 @@ class SubmitPage extends Component {
               <StartButton handleClick={this.getImage} />
             ) : null}
             {/* Let's get Giffy With It */}
-            {this.props.game.users.length > 0 ? (
+            {this.props.game.users.length > 0 && !this.props.game.started ? (
               <StartRoundButton handleClick={this.gameStart} />
-            ) : (
+            ) : !this.props.game.started ? (
               <p>
                 Need {3 - this.props.game.users.length} more player(s) to start
                 the round.
               </p>
+            ) : (
+              <p> Game On</p>
             )}
           </div>
         ) : null}
@@ -227,17 +229,14 @@ class SubmitPage extends Component {
     );
   }
 } // End class SubmitPage
-
 SubmitPage.defaultProps = {
   data: []
 };
-
 SubmitPage.propTypes = {
   data: PropTypes.array.isRequired,
   currentUser: PropTypes.object,
   currentUserId: PropTypes.string
 };
-
 export default withTracker(({ match }) => {
   const handle = Meteor.subscribe("giphyUrls");
   const handleSubmissions = Meteor.subscribe("submissions");
@@ -248,7 +247,6 @@ export default withTracker(({ match }) => {
   const game = Games.findOne({ _id: match.params.id });
   const winners = Submissions.find({ winner: true }).fetch();
   const theWinners = Winners.find({}).fetch();
-
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
