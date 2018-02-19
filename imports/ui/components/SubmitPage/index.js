@@ -102,6 +102,7 @@ class SubmitPage extends Component {
         Meteor.call("games.over", this.props.game._id);
         setTimeout(() => {
           Meteor.call("games.removeGame", this.props.game._id);
+          Meteor.call("submissions.removeData", this.props.game._id);
         }, 3000);
       } else {
         Meteor.call("games.toggleJudge", this.props.game);
@@ -247,9 +248,11 @@ class SubmitPage extends Component {
             ? ` ${gameWinner.username} is Gif Champion of the universe!`
             : null}
           <Link to="/">
-            <button className="morebutton" onClick={this.removeGame}>
-              Let's Gif More!
-            </button>
+            {this.props.game && this.props.game._id ? null : (
+              <button className="morebutton" onClick={this.removeGame}>
+                Let's Gif More!
+              </button>
+            )}
           </Link>
         </div>
       </div>
