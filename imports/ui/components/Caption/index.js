@@ -18,11 +18,14 @@ class Caption extends React.Component {
 
     return (
       <li className="caption">
-        {this.props.item.title}
-
+        {this.props.item.title} &nbsp;
         {this.props.currentUserId === judge ? (
-          <button onClick={this.props.pickWinner} id={this.props.item._id}>
-            Winner
+          <button
+            className="submitbutton"
+            onClick={this.props.pickWinner}
+            id={this.props.item._id}
+          >
+            Vote
           </button>
         ) : null}
       </li>
