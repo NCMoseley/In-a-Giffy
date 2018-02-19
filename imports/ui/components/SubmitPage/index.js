@@ -107,7 +107,7 @@ class SubmitPage extends Component {
         Meteor.call("games.hideWinner", this.props.game._id);
         Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 2000);
+    }, 5000);
   }
 
   removeGame() {
