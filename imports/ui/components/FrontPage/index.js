@@ -35,7 +35,7 @@ class FrontPage extends Component {
       if (err) {
         console.log("Create game no work?");
       } else {
-        this.props.history.push(`submitpagetest/${gameId}`);
+        this.props.history.push(`play/${gameId}`);
         Meteor.call("giphyUrls.getImage", gameId);
       }
     });
@@ -59,7 +59,7 @@ class FrontPage extends Component {
           />
         </form>
 
-        <Link to="/gamelisttest">
+        <Link to="/join">
           <div className="joinform">
             <button>Join a Game</button>
           </div>

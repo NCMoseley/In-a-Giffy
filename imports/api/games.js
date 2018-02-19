@@ -17,7 +17,7 @@ Meteor.methods({
   // start a new game
   async "games.create"(name) {
     // Make sure the user is logged in before inserting a task
-    // const gameName = "input";
+
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
@@ -51,14 +51,16 @@ Meteor.methods({
 
     const players = game.users;
 
-    if (players.includes(this.userId)) {
-      console.log("player is already in the game");
+ 
+
+    if(players.find(player => player.id === this.userId)){
+      alert("Player is already in the game!")
     } else {
       players.push({
         id: this.userId,
         score: 0,
         username: Meteor.user().username
-      });
+      })
     }
 
     Games.update(game._id, {

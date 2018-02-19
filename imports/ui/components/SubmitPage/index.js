@@ -31,7 +31,6 @@ class SubmitPage extends Component {
 
     this.addData = this.addData.bind(this);
     this.gameStart = this.gameStart.bind(this);
-    this.removewinnerd = this.removewinnerd.bind(this);
     this.getImage = this.getImage.bind(this);
     this.getWinners = this.getWinners.bind(this);
     this.increaseScore = this.increaseScore.bind(this);
@@ -66,6 +65,7 @@ class SubmitPage extends Component {
 
   addData(event) {
     event.preventDefault();
+
     if (this.dataInput.value) {
       Meteor.call(
         "submissions.addData",
@@ -107,26 +107,14 @@ class SubmitPage extends Component {
         Meteor.call("games.hideWinner", this.props.game._id);
         Meteor.call("submissions.removeData", this.props.game._id);
       }
-    }, 2000);
+    }, 5000);
   }
 
   removeGame() {
     if (this.props.game && this.props.game._id) {
+      Meteor.call("submissions.removeData", this.props.game._id);
       Meteor.call("games.removeGame", this.props.game._id);
     }
-  }
-
-  // remove a to do from the list
-
-  // remove all winnerd to dos from the list
-  removewinnerd() {
-    Meteor.call("data.removewinnerd", this.props.currentUserId);
-  }
-
-  // check if any of the data are winnerd
-  haswinnerd() {
-    let winnerd = this.props.data.filter(data => data.winner);
-    return winnerd.length > 0 ? true : false;
   }
 
   getImage() {
@@ -134,16 +122,11 @@ class SubmitPage extends Component {
     Meteor.call("giphyUrls.getImage", this.props.game._id);
   }
 
-  // componentDidMount() {
+  // componentWillMount() {
   //   this.props.currentUser && this.dataInput.focus();
   // }
 
   render() {
-    if (this.props.game) {
-      if (this.props.game.users.length === this.props.captions.length) {
-      }
-    }
-
     let judge;
     if (this.props.game) {
       judge = this.props.game.users[0].id;
@@ -177,14 +160,19 @@ class SubmitPage extends Component {
           </ul>
         ) : null}
 
-        {this.props.currentUserId === judge ||
-        (this.props.currentUserId !== judge && this.props.game.started) ? (
+        {(this.props.currentUserId === judge &&
+          !this.props.game.displayWinner) ||
+        (!this.props.game.displayWinner && this.props.game.started) ? (
           <Giphy
             url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
           />
         ) : null}
 
-        {this.props.currentUserId !== judge && this.props.game.started ? (
+        {this.props.currentUserId !== judge &&
+        this.props.game.started &&
+        !this.props.captions.find(
+          cap => cap.owner === this.props.currentUserId
+        ) ? (
           <div className="add-data">
             <CaptionField
               handleSubmit={this.addData}
