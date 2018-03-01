@@ -215,7 +215,10 @@ class SubmitPage extends Component {
                 the round.
               </p>
             ) : (
-              <h2>GAME ON</h2>
+              <h2>
+                You are the judge, choose a Gif and GAME ON! The other players
+                in the round will have a chance to caption the gif you chose.
+              </h2>
             )}
           </div>
         ) : null}
