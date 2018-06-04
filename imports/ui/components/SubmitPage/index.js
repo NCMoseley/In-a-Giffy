@@ -157,8 +157,10 @@ class SubmitPage extends Component {
             <p>Waiting for your host to start the round...</p>
           </div>
         ) : null}
+
         {this.props.game &&
         this.props.captions.length >= this.props.game.users.length - 1 &&
+        this.props.game.started &&
         !this.props.game.displayWinner ? (
           <ul>
             {this.props.captions.length > 0 ? (
@@ -176,6 +178,7 @@ class SubmitPage extends Component {
             )}
           </ul>
         ) : null}
+
         {(this.props.currentUserId === judge &&
           !this.props.game.displayWinner) ||
         (!this.props.game.displayWinner && this.props.game.started) ? (
