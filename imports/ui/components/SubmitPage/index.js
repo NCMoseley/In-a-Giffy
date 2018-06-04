@@ -15,9 +15,8 @@ import AccountsUI from "/imports/ui/components/AccountUIWrapper";
 import Caption from "/imports/ui/components/Caption";
 import CaptionField from "/imports/ui/components/CaptionField";
 import Giphy from "/imports/ui/components/Giphy"; // import Giphy front-end component
-import StartButton from "/imports/ui/components/StartButton";
+import GifButton from "/imports/ui/components/GifButton";
 import StartRoundButton from "/imports/ui/components/StartRoundButton";
-
 import EndRoundButton from "/imports/ui/components/EndRoundButton";
 
 class SubmitPage extends Component {
@@ -122,7 +121,6 @@ class SubmitPage extends Component {
   }
 
   getImage() {
-    console.log('SubMitPage/index.js calling "giphyUrls.getImage"...');
     Meteor.call("giphyUrls.getImage", this.props.game._id);
   }
 
@@ -156,7 +154,7 @@ class SubmitPage extends Component {
                 // "https://media1.tenor.com/images/c26a081912a71af8d0e57799c291ced5/tenor.gif?itemid=8524221" Tom Hanks
               }
             />
-            <p>Waiting for round start...</p>
+            <p>Waiting for your host to start the round...</p>
           </div>
         ) : null}
         {this.props.game &&
@@ -203,7 +201,7 @@ class SubmitPage extends Component {
         !this.props.game.displayWinner ? (
           <div className="gameon">
             {this.props.game && !this.props.game.started ? (
-              <StartButton handleClick={this.getImage} />
+              <GifButton handleClick={this.getImage} />
             ) : null}
             {/* Let's get Giffy With It */}
             {this.props.game.users.length > 0 &&

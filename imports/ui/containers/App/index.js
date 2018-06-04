@@ -15,7 +15,7 @@ import { GiphyUrls } from "/imports/api/giphy"; // import Giphy back-end collect
 import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
 import CaptionField from "/imports/ui/components/CaptionField";
 import FrontPage from "/imports/ui/components/FrontPage";
-import StartButton from "/imports/ui/components/StartButton";
+import GifButton from "/imports/ui/components/GifButton"; // TODO: don't think this is used anywhere in this file...
 import { Submissions } from "/imports/api/submissions";
 
 class App extends Component {
