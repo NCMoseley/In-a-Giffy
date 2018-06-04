@@ -92,18 +92,21 @@
   content: "\f05d";
 }
 
-.content-wrapper div button {
-  background: rgba(0, 0, 0, 0.1);
-  color: white;
-  border: 0;
-  cursor: pointer;
+button {
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  border-radius: 5px;
+  min-width: 50vw;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  border-radius: 0.25rem;
 }
 
-.content-wrapper div button:hover {
-  background: rgba(0, 0, 0, 0.3);
+button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 .add-data {
@@ -134,7 +137,7 @@
   border-bottom-color: #a0b871;
 }
 .submitbutton {
-  background-color: rgb(255, 110, 54);
+  background-color: #f63;
   border-radius: 5px;
 }
 .submitbutton:hover {
@@ -228,27 +231,13 @@ form.gameName input:focus {
 .joinform:hover {
   border: 2px solid white;
 }
-.nextgif {
-  padding: 1rem;
-  text-align: center;
-}
-.nextgif button:hover {
-  cursor: pointer;
-  font-weight: 700;
-}
-.startbutton {
-  text-align: center;
-}
-.startbutton button:hover {
-  cursor: pointer;
-  font-weight: 700;
-}
+
 .winning {
   text-align: center;
 }
 .winning button {
   border-radius: 5px;
-  background-color: rgb(255, 110, 54);
+  background-color: #f63;
   margin: 1rem;
 }
 .winning button:hover {
