@@ -50,4 +50,4 @@ Colin Matson-Jones
 Nate Moseley
 Travis Rempel
 
-![](https://i.imgflip.com/vpq.jpg)
+![Demo Image](https://github.com/NCMoseley/In-a-Giffy/blob/master/Home%20Screen.png)
