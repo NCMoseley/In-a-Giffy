@@ -150,9 +150,9 @@ class SubmitPage extends Component {
               className="holdon"
               alt={"Loading-hold"}
               src={
-                "https://thumbs.gfycat.com/BelatedWindyCentipede-max-1mb.gif"
+                // "https://thumbs.gfycat.com/BelatedWindyCentipede-max-1mb.gif" Elon
                 // "https://media1.tenor.com/images/7a9ae83463ac644fae025eaae5c8768d/tenor.gif?itemid=8137743" Trump
-                // "https://i1.wp.com/the-barnburner.com/wp-content/uploads/2018/02/laughter.gif?resize=390%2C277&ssl=1" Laughter
+                "https://i1.wp.com/the-barnburner.com/wp-content/uploads/2018/02/laughter.gif?resize=390%2C277&ssl=1"
                 // "https://media1.tenor.com/images/c26a081912a71af8d0e57799c291ced5/tenor.gif?itemid=8524221" Tom Hanks
               }
             />
@@ -215,10 +215,7 @@ class SubmitPage extends Component {
                 the round.
               </p>
             ) : (
-              <h2>
-                You are the judge, choose a Gif and GAME ON! The other players
-                in the round will have a chance to caption the gif you chose.
-              </h2>
+              <h2>GAME ON!</h2>
             )}
           </div>
         ) : null}
