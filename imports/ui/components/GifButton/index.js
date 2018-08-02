@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const StartButton = ({ handleClick }) => {
+const GifButton = ({ handleClick }) => {
   return (
-    <div className="nextgif">
+    <div>
       <button onClick={handleClick}>Try Another Gif</button>
     </div>
   );
 };
 
-StartButton.propTypes = {
+GifButton.propTypes = {
   handleClick: PropTypes.func.isRequired
 };
 
-export default StartButton;
+export default GifButton;

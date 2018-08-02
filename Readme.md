@@ -8,17 +8,21 @@ This a fun game that allows a group of friends to create hilarious captions on A
 
 download or clone the repo and then run:
 
-```
+```bash
  npm i/yarn add
 ```
 
 Then to start the app run:
 
-```
+```bash
 meteor run
 ```
 
-## Built With
+## Running the dev environment
+
+```bash
+npm start
+```
 
 ## License
 
@@ -30,9 +34,18 @@ Hat tip to anyone who's code was used
 Inspiration
 etc
 
+## Built With
+
+JavaScript
+Node
+Meteor
+React
+Mongodb
+Apollo
+
 ## Authors
 
-Aaron Grifith
+Aaron Griffiths
 Colin Matson-Jones
-Travis Remple
-Nathan Moseley
+Nate Moseley
+Travis Rempel
