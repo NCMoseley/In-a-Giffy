@@ -35,20 +35,19 @@ class App extends Component {
               <AccountsUI />
             </div>
             <div className="content-wrapper">
-              {this.props.currentUser ? (
-                // display this when the user logs in
+              {this.props.currentUser ? ( // user is logged in
                 <FrontPage />
               ) : (
-                // display this before the user has looged in
-                <div className="logged-out-message">
-                  <img
-                    className="logo"
-                    src="images/iaglogo.png"
-                    alt="In a .giffy!"
-                  />
-                  <p>A party game of .gifs and funny captions.</p>
-                </div>
-              )}
+                  // display this before the user has looged in
+                  <div className="logged-out-message">
+                    <img
+                      className="logo"
+                      src="images/iaglogo.png"
+                      alt="In a .giffy!"
+                    />
+                    <p>A party game of .gifs and funny captions.</p>
+                  </div>
+                )}
             </div>{" "}
           </div>
         </MuiThemeProvider>

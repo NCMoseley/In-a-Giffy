@@ -47,8 +47,6 @@
 
 .content-wrapper h1 {
   background-color: transparent;
-  /* border-top-left-radius: 5px; */
-  /* border-top-right-radius: 5px; */
   color: white;
   font-size: 2rem;
   padding: 0.5rem 1rem;
@@ -65,7 +63,6 @@
 .content-wrapper div span {
   flex: 1 0 60%;
   font-size: 0.9rem;
-  margin-right: 1rem;
   margin-top: 0.33333rem;
 }
 

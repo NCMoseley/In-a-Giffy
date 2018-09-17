@@ -142,6 +142,9 @@ class SubmitPage extends Component {
 
     return this.props.game && !this.props.game.over ? (
       <div className="submit-page-wrapper">
+        <div className="login-wrapper">
+          <AccountsUI />
+        </div>
         {this.props.currentUserId !== judge && !this.props.game.started ? (
           <div className="loadhold">
             <img
@@ -159,67 +162,67 @@ class SubmitPage extends Component {
         ) : null}
 
         {this.props.game &&
-        this.props.captions.length >= this.props.game.users.length - 1 &&
-        this.props.game.started &&
-        !this.props.game.displayWinner ? (
-          <ul>
-            {this.props.captions.length > 0 ? (
-              this.props.captions
-                .filter(cap => cap.game === this.props.match.params.id)
-                .map((caption, index) => (
-                  <Caption
-                    item={caption}
-                    key={index}
-                    pickWinner={this.pickWinner.bind(this, caption)}
-                  />
-                ))
-            ) : (
-              <p className="randomtext">No captions yet...</p>
-            )}
-          </ul>
-        ) : null}
+          this.props.captions.length >= this.props.game.users.length - 1 &&
+          this.props.game.started &&
+          !this.props.game.displayWinner ? (
+            <ul>
+              {this.props.captions.length > 0 ? (
+                this.props.captions
+                  .filter(cap => cap.game === this.props.match.params.id)
+                  .map((caption, index) => (
+                    <Caption
+                      item={caption}
+                      key={index}
+                      pickWinner={this.pickWinner.bind(this, caption)}
+                    />
+                  ))
+              ) : (
+                  <p className="randomtext">No captions yet...</p>
+                )}
+            </ul>
+          ) : null}
 
         {(this.props.currentUserId === judge &&
           !this.props.game.displayWinner) ||
-        (!this.props.game.displayWinner && this.props.game.started) ? (
-          <Giphy
-            url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
-          />
-        ) : null}
-        {this.props.currentUserId !== judge &&
-        this.props.game.started &&
-        !this.props.captions.find(
-          cap => cap.owner === this.props.currentUserId
-        ) ? (
-          <div className="add-data">
-            <CaptionField
-              handleSubmit={this.addData}
-              input={ref => (this.dataInput = ref)}
-              hidden={this.state.hidden}
+          (!this.props.game.displayWinner && this.props.game.started) ? (
+            <Giphy
+              url={this.props.currentGiphyUrl && this.props.currentGiphyUrl.url}
             />
-          </div>
-        ) : null}
+          ) : null}
+        {this.props.currentUserId !== judge &&
+          this.props.game.started &&
+          !this.props.captions.find(
+            cap => cap.owner === this.props.currentUserId
+          ) ? (
+            <div className="add-data">
+              <CaptionField
+                handleSubmit={this.addData}
+                input={ref => (this.dataInput = ref)}
+                hidden={this.state.hidden}
+              />
+            </div>
+          ) : null}
         {/* this.props.game.started */}
         {judge === this.props.currentUserId &&
-        !this.props.game.displayWinner ? (
-          <div className="gameon">
-            {this.props.game && !this.props.game.started ? (
-              <GifButton handleClick={this.getImage} />
-            ) : null}
-            {/* Let's get Giffy With It */}
-            {this.props.game.users.length > 0 &&
-            (this.props.game && !this.props.game.started) ? (
-              <StartRoundButton handleClick={this.gameStart} />
-            ) : !this.props.game.users.length > 0 ? (
-              <p>
-                Need {3 - this.props.game.users.length} more player(s) to start
-                the round.
+          !this.props.game.displayWinner ? (
+            <div className="gameon">
+              {this.props.game && !this.props.game.started ? (
+                <GifButton handleClick={this.getImage} />
+              ) : null}
+              {/* Let's get Giffy With It */}
+              {this.props.game.users.length > 0 &&
+                (this.props.game && !this.props.game.started) ? (
+                  <StartRoundButton handleClick={this.gameStart} />
+                ) : !this.props.game.users.length > 0 ? (
+                  <p>
+                    Need {3 - this.props.game.users.length} more player(s) to start
+                    the round.
               </p>
-            ) : (
-              <h2>GAME ON!</h2>
-            )}
-          </div>
-        ) : null}
+                ) : (
+                    <h2>GAME ON!</h2>
+                  )}
+            </div>
+          ) : null}
         {this.state.revealButton ? (
           <EndRoundButton
             handleWin={this.increaseScore}
@@ -243,21 +246,21 @@ class SubmitPage extends Component {
         ) : null}
       </div>
     ) : (
-      <div>
         <div>
-          {this.props.game
-            ? ` ${gameWinner.username} is Gif Champion of the universe!`
-            : null}
-          <Link to="/">
-            {this.props.game && this.props.game._id ? null : (
-              <button className="morebutton" onClick={this.removeGame}>
-                Let's Gif More!
+          <div>
+            {this.props.game
+              ? ` ${gameWinner.username} is Gif Champion of the universe!`
+              : null}
+            <Link to="/">
+              {this.props.game && this.props.game._id ? null : (
+                <button className="morebutton" onClick={this.removeGame}>
+                  Let's Gif More!
               </button>
-            )}
-          </Link>
+              )}
+            </Link>
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 } // End class SubmitPage
 SubmitPage.defaultProps = {

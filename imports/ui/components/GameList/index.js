@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 // import collections
 import { Games } from "/imports/api/games";
 
+// import components
+import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
+
 class GameList extends Component {
   constructor() {
     super();
@@ -22,7 +25,10 @@ class GameList extends Component {
 
     return (
       <div className="content-wrapper">
-        <div>
+        <div className="login-wrapper">
+          <AccountsUI />
+        </div>
+        < div >
           <h1>Join a Game</h1>
           <ul>
             {this.props.games.length > 0 ? (
@@ -34,13 +40,13 @@ class GameList extends Component {
                       onClick={this.joinGame.bind(this, game)}
                     >{`"${game.gameName}" hosted by ${
                       game.host.username
-                    }`}</button>
+                      }`}</button>
                   </Link>
                 </li>
               ))
             ) : (
-              <li>No games to display</li>
-            )}
+                <li>No games to display</li>
+              )}
           </ul>
         </div>
       </div>

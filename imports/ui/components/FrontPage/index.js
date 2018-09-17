@@ -8,14 +8,6 @@ import { MenuItem, RaisedButton, FlatButton } from "material-ui";
 import Paper from "material-ui/Paper";
 // import FlatButton from "material-ui/FlatButton";
 
-// import collections
-import { Games } from "/imports/api/games";
-import { Submissions } from "/imports/api/submissions";
-
-// import components
-import AccountsUI from "/imports/ui/components/AccountUIWrapper/index";
-import CaptionField from "/imports/ui/components/CaptionField";
-
 class FrontPage extends Component {
   constructor() {
     super();
